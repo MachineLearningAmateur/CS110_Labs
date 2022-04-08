@@ -10,36 +10,45 @@
 
     <title>Twitter</title>
   </head>
-  <body>  
+  
+  <nav class = "custom-nav navbar fixed-top navbar-light bg-white">
+    <div class = "header">
+      <a href="">
+        Home
+      </a>
+      <a href="">
+        Moments
+      </a>
+      <a href="">
+        Notifications
+      </a>
+      <a href="">
+        Messages
+      </a>
+      <img class = "twitter-logo" src="images/twitter-logo.png" alt="Twitter Logo (Blue Bird)">
+      <button class ="tweet-button" type="button">Tweet</button>
+    </div>
+  </nav>
 
-    <nav class = "custom-nav navbar fixed-top navbar-light bg-white">
-      <div class = "header">
-        <a href="">
-          Home
-        </a>
-        <a href="">
-          Moments
-        </a>
-        <a href="">
-          Notifications
-        </a>
-        <a href="">
-          Messages
-        </a>
-        <img class = "twitter-logo" src="images/twitter-logo.png" alt="Twitter Logo (Blue Bird)">
-        <button class ="tweet-button" type="button">Tweet</button>
-      </div>
-    </nav>
+  <body>  
     <!-- Navbar James -->
-    <div class = "container">
+    <div class = "mainpage">
       <div class = "profile">
         <img src="images/ratatouille-banner.png">
       </div>
-    </div>
     <!-- profile James -->
-
-    <!-- <div class = "feed"><p>hi</p></div>
-    <div class = "suggestions"><p>hi</p></div> -->
+      <div class = "feed">
+        <div class = "post"> 
+          <img src="images/ratatouille.jpg" class = "post_image">
+          <div><p class = "post_author">Remy</p>
+            <p class = "post_author_id_date">@Remy Nov 19</p></div>
+          <p class = "post_text">"I'm taking this class called CS 110 and tehe TAs are all so cool!</p>
+        </div>
+      </div>
+      <div class = "suggestions">
+        <p>hi</p>
+      </div>
+  </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="htt#008feen.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
