@@ -1,4 +1,5 @@
-/* Feel free to edit CSS of body if you'd like. We provide you the light gray background color and font family in the body styling */
+/* Feel free to edit CSS of body if you'd like. Wse provide you the light gray background color and font family in the body styling */
+
 html {
   background-color: #e6ecf0;
 }
@@ -21,6 +22,10 @@ body {
   display: flex;
   justify-content: flex-start;
   gap: 20px;
+}
+
+.smallIcons {
+  display: none;
 }
 
 nav div a {
@@ -72,7 +77,7 @@ nav div a:hover {
 }
 
 .feed {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #FFFFFF;
   width: 610px;
   height: 600px;
@@ -84,9 +89,9 @@ nav div a:hover {
 .post {
   flex-direction: column;
   border-color: #67757f;
-  border-radius: 10px;  
+  border-radius: 10px;
   padding: 10px;
-  
+
 }
 
 .post_image {
@@ -116,7 +121,7 @@ nav div a:hover {
 .suggestions {
   height: 100px;
   width: 290px;
-  background-color:red;
+  background-color: red;
   float: right;
   margin-top: -28.5%;
 }
@@ -124,12 +129,26 @@ nav div a:hover {
 .mainpage {
   background-color: #e6ecf0;
   padding: 15px;
-  margin-left: 20.5%; 
+  margin-left: 20.5%;
   width: 60%;
   position: absolute;
 }
 
 
 /* TODO: Create CSS for your Twitter Mockup */
- 
 
+@media only screen and (max-width: 1200px) {
+  .smallIcons {
+    display: inline-block ;
+    margin: auto;
+    width: 50%;
+  }
+
+  .navText {
+    display: none;
+  }
+
+  .suggestions {
+    display: none;
+  }
+}
