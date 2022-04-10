@@ -25,9 +25,17 @@ body {
 .header {
   display: flex;
   justify-content: flex-start;
-  gap: 20px;
 }
 
+.anchor {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.navText {
+  color: #67757f;
+  font-weight: 720;
+}
 .smallIcons {
   display: none;
 }
@@ -85,10 +93,9 @@ nav div a:hover {
 .container {
   background: black;
   z-index: 1;
-  height: 25%;
   display: flex;
   justify-content: center;
-  min-height: 90px;
+  min-height: 105px;
 }
 
 .banner {
@@ -199,7 +206,7 @@ nav div a:hover {
   width: 290px;
   background-color: white;
   float: right;
-  margin: 25px;
+  margin-top: 25px;
 }
 
 /* TODO: Create CSS for your Twitter Mockup */
@@ -210,6 +217,12 @@ nav div a:hover {
     margin: auto;
     width: 50%;
     
+  }
+  
+  .header {
+    flex: 0 0 auto
+    /*for some reason changing width doesnt 
+    affect the values within header*/
   }
 
   .navText {
