@@ -198,8 +198,7 @@ nav div a:hover {
   display: block;
   justify-content: space-between;
   text-align: start;
-  margin-left: 3.75vw;
-  
+  margin-left: 5vw;
 }
 
 .post_author_name {
@@ -228,15 +227,10 @@ nav div a:hover {
 
 .follow_button {
   text-align: center;
-  padding-top: 2hv;
-  font-weight: 500;
-  font-size: 16px;
   color: #49b3f4;
   font-weight: 700;
-  border-radius: 100;
   border: 2px solid #49b3f4;
   border-radius: 10em;
-  padding: 0.1em;
   width: 4vw;
 }
 .follow_button:hover {
