@@ -16,9 +16,8 @@ body {
 
 .mainPage {
   margin-top: 46px;
-  width: 90vw;
-  display: flex;
-  justify-content: space-around;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .custom-nav {
@@ -83,14 +82,15 @@ nav div a:hover {
 }
 
 .profile {
-  width: 20vw;
   min-width: 250px;
+  max-width: 320px;
   min-height: 300px;
-  margin-top: 25px;
   background-color: white;
   height: 35vh;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;  
+  margin: 0 25px;
+  margin-top: 25px;
 }
 
 .container {
@@ -168,8 +168,9 @@ nav div a:hover {
   background-color: #FFFFFF;
   width: 610px;
   height: 600px;
+  margin: 0 25px;
   margin-top: 25px;
-  margin-bottom: 1%;
+  display: inline-block;
 }
 
 .post {
@@ -177,6 +178,7 @@ nav div a:hover {
   padding: 10px;
   font-size: 120%;
   border-bottom: 1px solid #e6ecf0;
+  display: flex;
 }
 
 .post_image {
@@ -197,7 +199,6 @@ nav div a:hover {
   display: block;
   justify-content: space-between;
   text-align: start;
-  margin-left: 5vw;
 }
 
 .post_author_name {
@@ -214,6 +215,7 @@ nav div a:hover {
   width: 290px;
   background-color: white;
   float: right;
+  margin: 0 25px;
   margin-top: 25px;
   padding: 10px;
   height: 20vh;
