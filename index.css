@@ -193,6 +193,7 @@ nav div a:hover {
   font-weight: 500;
   font-size: 18px;
   line-height: 1px;
+  padding: 3px;
 }
 
 .post_author {
@@ -212,6 +213,7 @@ nav div a:hover {
 }
 
 .suggestions {
+  display: block;
   width: 290px;
   background-color: white;
   float: right;
@@ -222,18 +224,24 @@ nav div a:hover {
   min-height: 300px;
 }
 .suggested_profile {
+  display: inline-flex;
   float: left;
   border-bottom: 1px solid #e6ecf0;
   width: 11.6vw;
 }
 
+.suggested_img {
+  display: inline-flex;
+}
+
 .follow_button {
-  text-align: center;
+  display: inline-flex;
+  justify-content: center;
   color: #49b3f4;
   font-weight: 700;
   border: 2px solid #49b3f4;
   border-radius: 10em;
-  width: 4vw;
+  width: 125px;
 }
 .follow_button:hover {
   background-color: #49b3f4;
