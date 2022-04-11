@@ -198,7 +198,7 @@ nav div a:hover {
   display: block;
   justify-content: space-between;
   text-align: start;
-  margin-left: 3.75vw;
+  margin-left: 4vw;
   
 }
 
@@ -218,7 +218,7 @@ nav div a:hover {
   float: right;
   margin-top: 25px;
   padding: 10px;
-  height: 20vh
+  height: 25vh
 }
 .suggested_profile {
   float: left;
