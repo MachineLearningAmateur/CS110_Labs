@@ -15,6 +15,38 @@ h2 {
   justify-content: center;
 }
 
+#timer {
+  display: inline-flex;
+  font-weight: 800;
+  font-size: 1.5em;
+  position: absolute;
+  top: 0;
+}
+
+#results {
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.5em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 5%;
+}
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#mode {
+  max-height: 45px; 
+  margin: auto 10px;
+  background-color: #ff8c00;
+  padding: 10px;
+  border-radius: 12px;
+}
+
 .whose_turn {
   margin: 10px auto;
   margin-bottom: 20px;
@@ -35,7 +67,7 @@ h2 {
   margin: 20px auto;
 }
 
-.new_game:hover, .reset {
+.new_game:hover, .reset:hover, #mode:hover {
   background-color: orange;
 }
 
