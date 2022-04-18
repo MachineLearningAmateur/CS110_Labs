@@ -56,9 +56,14 @@ function checkWinCon() {
     (gameBoard[1][1] == gameBoard[2][2] == gameBoard[3][3]) || 
     (gameBoard[1][3] == gameBoard[2][2] == gameBoard[3][1])
     ) {
-        console.log("GAME OVER");
-    }
-    console.log("checking ...")
+        if (playerTurn % 2 == 0) { // player 1 won
+            player1Score++;
+        }
+        else {
+            player2Score++;
+        }
+        console.log("Game ended")
+    }   
 }
 
 
