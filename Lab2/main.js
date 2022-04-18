@@ -21,8 +21,10 @@ const spot9 = document.querySelector('nine');
 
 
 function gameStart() { //if reset button is pressed start game, assuming 2 players
-
-
+    playerTurn = 0
+    player1Score = 0
+    player2Score = 0
+    gameBoard = [['', '', ''], ['', '', ''], ['', '', '']];
 }
 
 function getInput () {
