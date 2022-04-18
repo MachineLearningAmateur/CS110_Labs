@@ -9,8 +9,9 @@ var player2Score = 0
 var gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; //3 by 3 matrix
 
 
-function gameStart() {
-    //restart game, 
+function gameStart() { //if new game button is pressed start game, assuming 2 players
+
+
 }
 
 function getInput () {
@@ -21,7 +22,11 @@ function updateBoard() {
     //update game board display
 }
 
-function resetGame () {
+function newGame() { // if new game button is pressed, resets the board but keeps the score
+    gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; 
+}
+
+function resetGame () { //if reset button is pressed, resets the board and score
     //clear board and score
     playerTurn = 0
     player1Score = 0
