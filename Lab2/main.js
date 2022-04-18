@@ -8,26 +8,57 @@ var player1Score = 0
 var player2Score = 0
 var gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; //3 by 3 matrix
 
+const spot1 = document.querySelector('one');
+const spot2 = document.querySelector('two');
+const spot3 = document.querySelector('three');
+const spot4 = document.querySelector('four');
+const spot5 = document.querySelector('five');
+const spot6 = document.querySelector('six');
+const spot7 = document.querySelector('seven');
+const spot8 = document.querySelector('eight');
+const spot9 = document.querySelector('nine');
 
-function gameStart() {
-    //check for player turn | use % to calculate turn | even is player X | odd is player O
+
+
+function gameStart() { //if reset button is pressed start game, assuming 2 players
+
+
+}
+
+function getInput () {
+    //check for player turn | use % to calculate turn | even is player X | odd is player O, get input and set board status
+    
 }
 
 function updateBoard() {
-    //update game board and display the correct move for the respective player
+    //update game board display
 }
 
-function resetGame () {
-    //clear board
+function newGame() {// if new game button is pressed, resets the board but keeps the score
+    gameBoard = [['', '', ''], 
+                ['', '', ''], 
+                ['', '', '']]; 
 }
 
-function resetScore() {
-    //reset Score 
+function resetGame () { //if reset button is pressed, resets the board and score
+    //clear board and score
+    gameStart();
 }
 
 function checkWinCon() {
     //need to implement | increment the score of the player who won
-    console.log("we have a winner ...")
+    if ((gameBoard[1][1] == gameBoard[1][2] == gameBoard[1][3]) || 
+    (gameBoard[2][1] == gameBoard[2][2] == gameBoard[2][3]) ||
+    (gameBoard[3][1] == gameBoard[3][2] == gameBoard[3][3]) ||
+    (gameBoard[1][1] == gameBoard[2][1] == gameBoard[3][1]) ||
+    (gameBoard[1][2] == gameBoard[2][2] == gameBoard[3][2]) || 
+    (gameBoard[1][3] == gameBoard[2][3] == gameBoard[3][3]) || 
+    (gameBoard[1][1] == gameBoard[2][2] == gameBoard[3][3]) || 
+    (gameBoard[1][3] == gameBoard[2][2] == gameBoard[3][1])
+    ) {
+        console.log("GAME OVER");
+    }
+    console.log("checking ...")
 }
 
 
