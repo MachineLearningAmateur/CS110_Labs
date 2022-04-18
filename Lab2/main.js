@@ -227,7 +227,7 @@ function checkWinCon() {
                 player1Score++;
                 m_result = 1;
                 }
-            else if (gameBoard[i][0] == "O" && gameBoard[i][1] == "O" && gameBoard[i][2] == '0') {//checks all horizontal 0
+            else if (gameBoard[i][0] == "O" && gameBoard[i][1] == "O" && gameBoard[i][2] == 'O') {//checks all horizontal 0
                 player2Score++;
                 m_result = 2;
                 }
@@ -240,11 +240,11 @@ function checkWinCon() {
             player1Score++;
             m_result = 1;
         }
-        else if (gameBoard[2][2] == "O" && gameBoard[1][1] == "O" && gameBoard[0][0] == '0') {
+        else if (gameBoard[2][2] == "O" && gameBoard[1][1] == "O" && gameBoard[0][0] == 'O') {
             player2Score++;
             m_result = 2;
         }
-        else if (gameBoard[0][2] == "O" && gameBoard[1][1] == "O" && gameBoard[2][0] == '0') {
+        else if (gameBoard[0][2] == "O" && gameBoard[1][1] == "O" && gameBoard[2][0] == 'O') {
             player2Score++;
             m_result = 2;
         }
