@@ -67,6 +67,10 @@ function choice(event) {
     }
     
     playerTurn += 1;
+  
+    if (aiMode) {
+        aiChoice();
+    }
 
     //checkWinCon()
     newTimer = setTimeout(skipTurn, 5000); 
