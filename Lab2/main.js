@@ -21,8 +21,10 @@ const spot9 = document.querySelector('nine');
 
 
 function gameStart() { //if reset button is pressed start game, assuming 2 players
-
-
+    playerTurn = 0
+    player1Score = 0
+    player2Score = 0
+    gameBoard = [['', '', ''], ['', '', ''], ['', '', '']];
 }
 
 function getInput () {
@@ -56,9 +58,14 @@ function checkWinCon() {
     (gameBoard[1][1] == gameBoard[2][2] == gameBoard[3][3]) || 
     (gameBoard[1][3] == gameBoard[2][2] == gameBoard[3][1])
     ) {
-        console.log("GAME OVER");
-    }
-    console.log("checking ...")
+        if (playerTurn % 2 == 0) { // player 1 won
+            player1Score++;
+        }
+        else {
+            player2Score++;
+        }
+        console.log("Game ended")
+    }   
 }
 
 
