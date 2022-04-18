@@ -10,7 +10,7 @@ window.addEventListener("load", (event) => { //need this listener to put the scr
     const spot7 = document.querySelector('.seven');
     const spot8 = document.querySelector('.eight');
     const spot9 = document.querySelector('.nine');
-
+  
     //buttons
     const ngButton = document.getElementsByClassName("new_game");
 
@@ -31,6 +31,7 @@ var player1Score = 0;
 var player2Score = 0;
 var dict = {"one" : [0,0], "two" : [1, 0], "three" : [2, 0], "four" : [0, 1], "five" : [1,1], "six" : [2,1], "seven" : [0,2], "eight" : [1, 2], "nine" : [2,2]};
 var gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; //3 by 3 matrix
+var variables = ['']
 
 
 function choice(event) {
@@ -62,6 +63,15 @@ function getInput () {
 
 function updateBoard() {
     //update game board display
+    let i = 0;
+    let j = 0;
+    let flag = true;
+    
+    while (flag) {
+        
+    }
+
+    console.log("1");
 }
 
 function clearBoard() {
@@ -83,14 +93,14 @@ function resetGame () { //if reset button is pressed, resets the board and score
 
 function checkWinCon() {
     //need to implement | increment the score of the player who won
-    if ((gameBoard[1][1] == gameBoard[1][2] == gameBoard[1][3]) || 
-    (gameBoard[2][1] == gameBoard[2][2] == gameBoard[2][3]) ||
-    (gameBoard[3][1] == gameBoard[3][2] == gameBoard[3][3]) ||
-    (gameBoard[1][1] == gameBoard[2][1] == gameBoard[3][1]) ||
-    (gameBoard[1][2] == gameBoard[2][2] == gameBoard[3][2]) || 
-    (gameBoard[1][3] == gameBoard[2][3] == gameBoard[3][3]) || 
-    (gameBoard[1][1] == gameBoard[2][2] == gameBoard[3][3]) || 
-    (gameBoard[1][3] == gameBoard[2][2] == gameBoard[3][1])
+    if ((gameBoard[0][0] == gameBoard[0][1] == gameBoard[0][2]) || 
+    (gameBoard[1][0] == gameBoard[1][1] == gameBoard[1][2]) ||
+    (gameBoard[2][0] == gameBoard[2][1] == gameBoard[2][2]) ||
+    (gameBoard[0][0] == gameBoard[1][0] == gameBoard[2][0]) ||
+    (gameBoard[0][1] == gameBoard[1][1] == gameBoard[2][1]) || 
+    (gameBoard[0][2] == gameBoard[1][2] == gameBoard[2][2]) || 
+    (gameBoard[0][0] == gameBoard[1][1] == gameBoard[2][2]) || 
+    (gameBoard[0][2] == gameBoard[1][1] == gameBoard[2][0])
     ) {
         if (playerTurn % 2 == 1) { // player 1 won
             player1Score++;
