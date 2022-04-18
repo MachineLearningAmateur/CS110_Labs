@@ -10,19 +10,23 @@ var gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; //3 by 3 matrix
 
 
 function gameStart() {
-    //check for player turn | use % to calculate turn | even is player X | odd is player O
+    //restart game, 
+}
+
+function getInput () {
+    //check for player turn | use % to calculate turn | even is player X | odd is player O, get input and set board status
 }
 
 function updateBoard() {
-    //update game board and display the correct move for the respective player
+    //update game board display
 }
 
 function resetGame () {
-    //clear board
-}
-
-function resetScore() {
-    //reset Score 
+    //clear board and score
+    playerTurn = 0
+    player1Score = 0
+    player2Score = 0
+    gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; 
 }
 
 function checkWinCon() {
