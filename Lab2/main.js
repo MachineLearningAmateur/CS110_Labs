@@ -72,7 +72,10 @@ function choice(event) {
         aiChoice();
     }
 
-    checkWinCon()
+    if (checkWinCon()) {
+        document.getElementsByClassName("display_player")[0].innerHTML = "Game has ended!";
+        return;
+    }
     newTimer = setTimeout(skipTurn, 5000); 
     clearTimeout(countDown);
     secs = 5;
@@ -80,6 +83,7 @@ function choice(event) {
 
     if (isGameBoardFull()) {
         results.innerHTML = "Match Result: It's a tie!"
+        document.getElementsByClassName("display_player")[0].innerHTML = "Game has ended!";
         clearTimeout(countDown);
         clearTimeout(newTimer);
         var el = document.getElementById("timer");
@@ -170,6 +174,7 @@ function clearBoard() {
 
 // if new game button is pressed, resets the board but keeps the score
 function newGame() {
+    winner = false;
     gameBoard = [['', '', ''], 
                 ['', '', ''], 
                 ['', '', '']]; 
@@ -187,6 +192,8 @@ function resetGame () {
     //clear board and score
     player1Score = 0
     player2Score = 0
+    document.getElementsByClassName("player_1")[0].innerHTML = player1Score;
+    document.getElementsByClassName("player_2")[0].innerHTML = player2Score;
     newGame();
     aiMode = true;
     toggleMode();
@@ -218,48 +225,64 @@ function checkWinCon() {
             if (gameBoard[0][i] == "X" && gameBoard[1][i] == "X" && gameBoard[2][i] == "X") { //checks all vertial X
                 player1Score++;
                 m_result = 1;
+                winner = true;
             }
             else if (gameBoard[0][i] == "O" && gameBoard[1][i] == "O" && gameBoard[2][i] == 'O') { //checks all vertial 0
                 player2Score++;
                 m_result = 2;
+                winner = true;
             }
             else if (gameBoard[i][0] == "X" && gameBoard[i][1] == "X" && gameBoard[i][2] =="X") { //checks all horizontal X
                 player1Score++;
                 m_result = 1;
+                winner = true;
                 }
             else if (gameBoard[i][0] == "O" && gameBoard[i][1] == "O" && gameBoard[i][2] == 'O') {//checks all horizontal 0
                 player2Score++;
                 m_result = 2;
+                winner = true;
                 }
             }
         if (gameBoard[2][2] == "X" && gameBoard[1][1] == "X" && gameBoard[0][0] == "X") {
             player1Score++;
             m_result = 1;
+            winner = true;
         }
         else if (gameBoard[0][2] == "X" && gameBoard[1][1] == "X" && gameBoard[2][0] == 'X') {
             player1Score++;
             m_result = 1;
+            winner = true;
         }
         else if (gameBoard[2][2] == "O" && gameBoard[1][1] == "O" && gameBoard[0][0] == 'O') {
             player2Score++;
             m_result = 2;
+            winner = true;
         }
         else if (gameBoard[0][2] == "O" && gameBoard[1][1] == "O" && gameBoard[2][0] == 'O') {
             player2Score++;
             m_result = 2;
+            winner = true;
         }
     }
     if (m_result == 0) {
         results.innerHTML = "Match Result: Game is ongoing!"
     }
     else if (m_result == 1) {
-        results.innerHTML = "Match Result: Player 1 won!"
+        results.innerHTML = "Match Result: Player X won!"
     }
     else if (m_result == 2) {
-        results.innerHTML = "Match Result: Player 2 won!"
+        results.innerHTML = "Match Result: Player O won!"
     }
-    // document.getElementsByClassName("player_1")[0].innerHTML = player1Score;
-    // document.getElementsByClassName("player_2")[0].innerHTML = player2Score;
+    document.getElementsByClassName("player_1")[0].innerHTML = player1Score;
+    document.getElementsByClassName("player_2")[0].innerHTML = player2Score;
+
+    if (winner) {
+        clearTimeout(countDown);
+        clearTimeout(newTimer);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
