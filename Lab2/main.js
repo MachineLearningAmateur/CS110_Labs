@@ -68,7 +68,6 @@ function choice(event) {
     
     playerTurn += 1;
     if (aiMode) {
-        //do something
         aiChoice();
     }
     //checkWinCon()
