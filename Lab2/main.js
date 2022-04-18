@@ -143,14 +143,14 @@ function resetGame () { //if reset button is pressed, resets the board and score
 
 function checkWinCon() {
     //need to implement | increment the score of the player who won
-    if ((gameBoard[1][1] == gameBoard[1][2] == gameBoard[1][3]) || 
-    (gameBoard[2][1] == gameBoard[2][2] == gameBoard[2][3]) ||
-    (gameBoard[3][1] == gameBoard[3][2] == gameBoard[3][3]) ||
-    (gameBoard[1][1] == gameBoard[2][1] == gameBoard[3][1]) ||
-    (gameBoard[1][2] == gameBoard[2][2] == gameBoard[3][2]) || 
-    (gameBoard[1][3] == gameBoard[2][3] == gameBoard[3][3]) || 
-    (gameBoard[1][1] == gameBoard[2][2] == gameBoard[3][3]) || 
-    (gameBoard[1][3] == gameBoard[2][2] == gameBoard[3][1])
+    if ((gameBoard[0][0] == gameBoard[0][1] == gameBoard[0][2]) || 
+    (gameBoard[1][0] == gameBoard[1][1] == gameBoard[1][2]) ||
+    (gameBoard[2][0] == gameBoard[2][1] == gameBoard[2][2]) ||
+    (gameBoard[0][0] == gameBoard[1][0] == gameBoard[2][0]) ||
+    (gameBoard[0][1] == gameBoard[1][1] == gameBoard[2][1]) || 
+    (gameBoard[0][2] == gameBoard[1][2] == gameBoard[2][2]) || 
+    (gameBoard[0][0] == gameBoard[1][1] == gameBoard[2][2]) || 
+    (gameBoard[0][2] == gameBoard[1][1] == gameBoard[2][0])
     ) {
         if (playerTurn % 2 == 1) { // player 1 won
             player1Score++;
