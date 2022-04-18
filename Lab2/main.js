@@ -279,6 +279,8 @@ function checkWinCon() {
     if (winner) {
         clearTimeout(countDown);
         clearTimeout(newTimer);
+        var el = document.getElementById("timer");
+        el.innerHTML = "Timer Countdown: 0";
         return true;
     } else {
         return false;
