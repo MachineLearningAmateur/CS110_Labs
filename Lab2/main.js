@@ -11,7 +11,31 @@ window.addEventListener("load", (event) => { //need this listener to put the scr
     const spot9 = document.querySelector('.nine');
 
     spot1.addEventListener('click', (event) => {
-        alert("hello");
+        alert("box1");
+    });
+    spot2.addEventListener('click', (event) => {
+        alert("box2");
+    });
+    spot3.addEventListener('click', (event) => {
+        alert("box3");
+    });
+    spot4.addEventListener('click', (event) => {
+        alert("box4");
+    });
+    spot5.addEventListener('click', (event) => {
+        alert("box5");
+    });
+    spot6.addEventListener('click', (event) => {
+        alert("box6");
+    });
+    spot7.addEventListener('click', (event) => {
+        alert("box7");
+    });
+    spot8.addEventListener('click', (event) => {
+        alert("box8");
+    });
+    spot9.addEventListener('click', (event) => {
+        alert("box9");
     });
     //get the elements needed
 });
