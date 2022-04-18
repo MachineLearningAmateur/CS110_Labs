@@ -11,7 +11,13 @@ window.addEventListener("load", (event) => { //need this listener to put the scr
     const spot9 = document.querySelector('.nine');
 
     spot1.addEventListener('click', (event) => {
-        alert("box1");
+        if (playerTurn % 2 == 1) { // player 1 won
+            gameBoard[1][1] = 'X'
+        }
+        else {
+            gameBoard[1][1] = '0'
+        }
+        updateBoard();
     });
     spot2.addEventListener('click', (event) => {
         alert("box2");
