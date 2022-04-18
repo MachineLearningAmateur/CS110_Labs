@@ -41,22 +41,23 @@ function choice(event) {
     let slot = event.currentTarget.className;
     //console.log("something: ", slot);
     let currChoice = event.currentTarget.firstChild;
+    if (currChoice.innerHTML != '') {
+        return 
+    }
     if (playerTurn%2  == 1) {
         currChoice.innerHTML = "X";
         gameBoard[dict[slot][0]][dict[slot][1]] = "X";
+        document.getElementsByClassName("display_player")[0].innerHTML = "O";
     } else {
         currChoice.innerHTML = "O";
         gameBoard[dict[slot][0]][dict[slot][1]] = "O";
+        document.getElementsByClassName("display_player")[0].innerHTML = "X";
     }
-    playerTurn += 1;
     
+    playerTurn += 1;
+  
     //checkWinCon()
     //start timer?
-}
-
-function getInput () {
-    //check for player turn | use % to calculate turn | even is player X | odd is player O, get input and set board status
-    
 }
 
 function clearBoard() {
