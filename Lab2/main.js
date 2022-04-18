@@ -12,8 +12,11 @@ window.addEventListener("load", (event) => { //need this listener to put the scr
     const spot9 = document.querySelector('.nine');
   
     //buttons
-    const ngButton = document.getElementsByClassName("new_game");
+    var ngButton = document.getElementsByClassName("new_game");
+    var resetButton = document.getElementsByClassName("reset");
 
+    ngButton[0].addEventListener('click', newGame);
+    resetButton[0].addEventListener('click', resetGame);
     spot1.addEventListener('click', choice);
     spot2.addEventListener('click', choice);
     spot3.addEventListener('click', choice);
@@ -23,7 +26,6 @@ window.addEventListener("load", (event) => { //need this listener to put the scr
     spot7.addEventListener('click', choice);
     spot8.addEventListener('click', choice);
     spot9.addEventListener('click', choice);
-    //get the elements needed
 });
 
 var playerTurn = 1; //player 1 is X and player 2 is O
@@ -34,26 +36,22 @@ var gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; //3 by 3 matrix
 var variables = ['']
 
 
-function choice(event) {
-    let slot = event.className;
-    console.log("something: ", slot);
+//updates the game board in real time
+function choice(event) { 
+    let slot = event.currentTarget.className;
+    //console.log("something: ", slot);
     let currChoice = event.currentTarget.firstChild;
     if (playerTurn%2  == 1) {
         currChoice.innerHTML = "X";
-        //gameBoard[dict[slot][0]][dict[slot][1]] = "X";
+        gameBoard[dict[slot][0]][dict[slot][1]] = "X";
     } else {
         currChoice.innerHTML = "O";
-        //gameBoard[dict[slot][0]][dict[slot][1]] = "O";
+        gameBoard[dict[slot][0]][dict[slot][1]] = "O";
     }
     playerTurn += 1;
-    console.log(gameBoard);
+   
     //checkWinCon()
     //start timer?
-}
-
-function gameStart() { //if reset button is pressed start game, assuming 2 players
-    playerTurn = 1
-    gameBoard = [['', '', ''], ['', '', ''], ['', '', '']];
 }
 
 function getInput () {
@@ -61,34 +59,27 @@ function getInput () {
     
 }
 
-function updateBoard() {
-    //update game board display
-    let i = 0;
-    let j = 0;
-    let flag = true;
-    
-    while (flag) {
-        
-    }
-
-    console.log("1");
-}
-
 function clearBoard() {
-
+    let choices = document.getElementsByClassName("xo");
+    for (var i = 0; i < choices.length; i++) {
+        console.log(choices[i]);
+        choices[i].innerHTML = "";
+    }
 }
 
 function newGame() {// if new game button is pressed, resets the board but keeps the score
     gameBoard = [['', '', ''], 
                 ['', '', ''], 
                 ['', '', '']]; 
+    clearBoard();
 }
 
 function resetGame () { //if reset button is pressed, resets the board and score
     //clear board and score
     player1Score = 0
     player2Score = 0
-    gameStart();
+    newGame();
+    alert("Game has been reset!");
 }
 
 function checkWinCon() {
