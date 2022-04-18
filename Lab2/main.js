@@ -72,7 +72,7 @@ function choice(event) {
         aiChoice();
     }
 
-    //checkWinCon()
+    checkWinCon()
     newTimer = setTimeout(skipTurn, 5000); 
     clearTimeout(countDown);
     secs = 5;
@@ -209,25 +209,76 @@ function toggleMode() {
 //checks if the win condition is met
 function checkWinCon() {
     //need to implement | increment the score of the player who won
-    if (((gameBoard[0][0] == gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][1] != ' ') || 
-    ((gameBoard[1][0] == gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][1] != ' ') ||
-    ((gameBoard[2][0] == gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][1] != ' ') ||
-    ((gameBoard[0][0] == gameBoard[1][0] == gameBoard[2][0]) && gameBoard[1][0] != ' ') ||
-    ((gameBoard[0][1] == gameBoard[1][1] == gameBoard[2][1]) && gameBoard[1][1] != ' ') || 
-    ((gameBoard[0][2] == gameBoard[1][2] == gameBoard[2][2]) && gameBoard[1][2] != ' ') || 
-    ((gameBoard[0][0] == gameBoard[1][1] == gameBoard[2][2]) && gameBoard[1][1] != ' ') || 
-    ((gameBoard[0][2] == gameBoard[1][1] == gameBoard[2][0]) && gameBoard[1][1] != ' ')
-    ) {
-        if (playerTurn % 2 == 1) { // player 1 won
-            player1Score++;
-        }
-        else {
-            player2Score++;
-        }
-        alert("Game ended");
-    }   
-}
+    // if (((gameBoard[0][0] == gameBoard[0][1] == gameBoard[0][2]) && gameBoard[0][1] != ' ') || 
+    // ((gameBoard[1][0] == gameBoard[1][1] == gameBoard[1][2]) && gameBoard[1][1] != ' ') ||
+    // ((gameBoard[2][0] == gameBoard[2][1] == gameBoard[2][2]) && gameBoard[2][1] != ' ') ||
+    // ((gameBoard[0][0] == gameBoard[1][0] == gameBoard[2][0]) && gameBoard[1][0] != ' ') ||
+    // ((gameBoard[0][1] == gameBoard[1][1] == gameBoard[2][1]) && gameBoard[1][1] != ' ') || 
+    // ((gameBoard[0][2] == gameBoard[1][2] == gameBoard[2][2]) && gameBoard[1][2] != ' ') || 
+    // ((gameBoard[0][0] == gameBoard[1][1] == gameBoard[2][2]) && gameBoard[1][1] != ' ') || 
+    // ((gameBoard[0][2] == gameBoard[1][1] == gameBoard[2][0]) && gameBoard[1][1] != ' ')
+    // ) {
 
+    //     if (playerTurn % 2 == 1) { // player 1 won
+    //         player1Score++;
+    //         alert("Player 1 won");
+    //     }
+    //     else {
+    //         player2Score++;
+    //         alert("Player 2 won");
+    //     }
+    // }   
+    if (playerTurn > 2) {
+        console.log("checking win con...");
+        console.log("BOARD:");
+        console.log(JSON.stringify(gameBoard));
+        for (var i = 0; i < 3; i++) {
+            if (gameBoard[0][i] == "X" && gameBoard[1][i] == "X" && gameBoard[2][i] == "X") { //checks all vertial X
+                alert("Player x won");
+                console.log("player x won");
+            }
+            else if (gameBoard[0][i] == "O" && gameBoard[1][i] == "O" && gameBoard[2][i] == 'O') { //checks all vertial 0
+                    alert("Player o won");
+                }
+            else if (gameBoard[i][0] == "X" && gameBoard[i][1] == "X" && gameBoard[i][2] =="X") { //checks all horizontal X
+                    alert("Player x won");
+                }
+            else if (gameBoard[i][0] == "O" && gameBoard[i][1] == "O" && gameBoard[i][2] == '0') {//checks all horizontal 0
+                    alert("Player o won");
+                }
+            }
+    //     for (var i = 0; i < 3; i++) {
+    //         console.log("BOARD:");
+    //         console.log(JSON.stringify(gameBoard));
+    //         if (gameBoard[0][i] == gameBoard[1][i] == gameBoard[2][i] == 'X') { //checks all vertial X
+    //             alert("Player x won");
+    //             console.log("player x won");
+    //         }
+    //         else if (gameBoard[0][i] == gameBoard[1][i] == gameBoard[2][i] == '0') { //checks all vertial 0
+    //             alert("Player o won");
+    //         }
+    //         else if (gameBoard[i][0] == gameBoard[i][1] == gameBoard[i][2] =="X") { //checks all horizontal X
+    //             alert("Player x won");
+    //         }
+    //         else if (gameBoard[i][0] == gameBoard[i][1] == gameBoard[i][2] =='0') {//checks all horizontal 0
+    //             alert("Player o won");
+    //         }
+    //     }
+        if (gameBoard[2][2] == "X" && gameBoard[1][1] == "X" && gameBoard[0][0] == "X") {
+            alert("Player x won");
+        }
+        else if (gameBoard[0][2] == "X" && gameBoard[1][1] == "X" && gameBoard[2][0] == 'X') {
+            alert("Player x won");
+        }
+        else if (gameBoard[2][2] == "O" && gameBoard[1][1] == "O" && gameBoard[0][0] == '0') {
+            alert("Player o won");
+        }
+        else if (gameBoard[0][2] == "O" && gameBoard[1][1] == "O" && gameBoard[2][0] == '0') {
+            alert("Player o won");
+        }
+    }
+
+}
 
 
 
