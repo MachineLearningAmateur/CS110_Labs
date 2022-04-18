@@ -1,5 +1,6 @@
 window.addEventListener("load", (event) => { //need this listener to put the script within the header, otherwise put the script at the end
     console.log("Page fully loaded"); 
+    //slots
     const spot1 = document.querySelector('.one');
     const spot2 = document.querySelector('.two');
     const spot3 = document.querySelector('.three');
@@ -10,47 +11,44 @@ window.addEventListener("load", (event) => { //need this listener to put the scr
     const spot8 = document.querySelector('.eight');
     const spot9 = document.querySelector('.nine');
 
-    spot1.addEventListener('click', (event) => {
-        if (playerTurn % 2 == 1) { // player 1 won
-            gameBoard[1][1] = 'X'
-        }
-        else {
-            gameBoard[1][1] = '0'
-        }
-        updateBoard();
-    });
-    spot2.addEventListener('click', (event) => {
-        alert("box2");
-    });
-    spot3.addEventListener('click', (event) => {
-        alert("box3");
-    });
-    spot4.addEventListener('click', (event) => {
-        alert("box4");
-    });
-    spot5.addEventListener('click', (event) => {
-        alert("box5");
-    });
-    spot6.addEventListener('click', (event) => {
-        alert("box6");
-    });
-    spot7.addEventListener('click', (event) => {
-        alert("box7");
-    });
-    spot8.addEventListener('click', (event) => {
-        alert("box8");
-    });
-    spot9.addEventListener('click', (event) => {
-        alert("box9");
-    });
+    //buttons
+    const ngButton = document.getElementsByClassName("new_game");
+
+    spot1.addEventListener('click', choice);
+    spot2.addEventListener('click', choice);
+    spot3.addEventListener('click', choice);
+    spot4.addEventListener('click', choice);
+    spot5.addEventListener('click', choice);
+    spot6.addEventListener('click', choice);
+    spot7.addEventListener('click', choice);
+    spot8.addEventListener('click', choice);
+    spot9.addEventListener('click', choice);
     //get the elements needed
 });
 
 var playerTurn = 1; //player 1 is X and player 2 is O
 var player1Score = 0;
 var player2Score = 0;
+var dict = {"one" : [0,0], "two" : [1, 0], "three" : [2, 0], "four" : [0, 1], "five" : [1,1], "six" : [2,1], "seven" : [0,2], "eight" : [1, 2], "nine" : [2,2]};
 var gameBoard = [['', '', ''], ['', '', ''], ['', '', '']]; //3 by 3 matrix
 
+
+function choice(event) {
+    let slot = event.className;
+    console.log("something: ", slot);
+    let currChoice = event.currentTarget.firstChild;
+    if (playerTurn%2  == 1) {
+        currChoice.innerHTML = "X";
+        //gameBoard[dict[slot][0]][dict[slot][1]] = "X";
+    } else {
+        currChoice.innerHTML = "O";
+        //gameBoard[dict[slot][0]][dict[slot][1]] = "O";
+    }
+    playerTurn += 1;
+    console.log(gameBoard);
+    //checkWinCon()
+    //start timer?
+}
 
 function gameStart() { //if reset button is pressed start game, assuming 2 players
     playerTurn = 1
@@ -100,7 +98,7 @@ function checkWinCon() {
         else {
             player2Score++;
         }
-        console.log("Game ended")
+        alert("Game ended");
     }   
 }
 
