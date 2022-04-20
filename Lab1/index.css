@@ -167,10 +167,11 @@ nav div a:hover {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #FFFFFF;
   width: 610px;
-  height: 600px;
   margin: 0 25px;
   margin-top: 25px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  max-height: max-content;
 }
 
 .post {
@@ -200,11 +201,6 @@ nav div a:hover {
   display: block;
   justify-content: space-between;
   text-align: start;
-<<<<<<< HEAD:index.css
-  margin-left: 4vw;
-  
-=======
->>>>>>> main:Lab1/index.css
 }
 
 .post_author_name {
@@ -225,13 +221,9 @@ nav div a:hover {
   margin: 0 25px;
   margin-top: 25px;
   padding: 10px;
-<<<<<<< HEAD:index.css
   height: 25vh
-=======
-  height: 20vh;
-  min-height: 300px;
->>>>>>> main:Lab1/index.css
 }
+
 .suggested_profile {
   display: inline-flex;
   float: left;
@@ -256,6 +248,10 @@ nav div a:hover {
   background-color: #49b3f4;
   color:#FFFFFF;
   cursor: pointer;
+}
+
+#reader {
+  display: none;
 }
 
 /* TODO: Create CSS for your Twitter Mockup */
