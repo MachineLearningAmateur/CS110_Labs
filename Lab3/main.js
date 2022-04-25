@@ -4,10 +4,13 @@ let nInterval;
 let live;
 let tweets = [];
 let tweetContainer;
+let searchString = ""; 
 
 window.onload = function() {
     let checkBox = document.getElementsByName('liveFeed')[0];
     checkBox.addEventListener("click", (evt) => {live = checkBox.checked});
+    let search = document.getElementById('searchBar');
+    search.oninput = (evt) => {searchString = search.value; console.log(searchString)};
     tweetContainer = document.getElementsByClassName('feed')[0];
     nInterval = setInterval(updateFeed, 5000);
 }
@@ -30,7 +33,7 @@ function getTweets() {
     fetch(url)
        .then(res => res.json()) .then(data => {  
        // do something to parse data
-       console.log(data['statuses']);
+       console.log(data);
        data['statuses'].forEach(tweet => {
            tweets.push(tweet);
        })
