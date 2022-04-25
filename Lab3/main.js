@@ -169,7 +169,7 @@ function appendToFeed(passIn) {
         var d = new Date(obj['created_at']);
         //let date_post = convertDate(d);
         let date_post = d.toLocaleString();
-        console.log(date_post);
+        //console.log(date_post);
         var author = document.createElement("p");
         author.textContent = "@" + obj['user']['name'];
         var date = document.createElement("p");

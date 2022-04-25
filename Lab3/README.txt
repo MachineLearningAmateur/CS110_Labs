@@ -1,1 +1,1 @@
-The checkbox needs to be ticked in order to update the feed live (every 5 seconds). There are some images missing because of error 404. Also, for some reason, the dates are all the same?
+The checkbox needs to be ticked in order to update the feed live (every 5 seconds). There are some images missing because of error 404. Also, for some reason, the dates are all the same, so I sorted by time instead. Most recent post based on timestamp is sorted at the top, while the older timestamps are at the bottom. 
