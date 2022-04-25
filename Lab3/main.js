@@ -14,6 +14,7 @@ window.onload = function () {//initial call
     document.getElementById('searchBar').addEventListener("input", handleSearch);
     tweetContainer = document.getElementsByClassName('feed')[0];
     nInterval = setInterval(updateFeed, 5000);
+    getTweets();
 }
 
 /**
@@ -24,7 +25,7 @@ window.onload = function () {//initial call
  */
 function handleSearch(event) {
     searchString = event.target.value.trim().toLowerCase();
-    console.log(searchString);
+    //console.log(searchString);
     pauseFilter();
 }
 
@@ -53,7 +54,7 @@ function convertDate(date) {
 function updateFeed() {
     //console.log(live);
     if (live) {
-        refreshTweets();
+        getTweets();
     }
 }
 
@@ -63,10 +64,10 @@ function updateFeed() {
  * @param None
  * @returns None, new tweets will be appended to tweets
  */
-function getTweets() {
+async function getTweets() {
     const url = twitterServerUrl;
 
-    fetch(url)
+    await fetch(url)
         .then(res => res.json()).then(data => {
             // do something to parse data
             //console.log(data);
@@ -78,12 +79,14 @@ function getTweets() {
                 }
             });
             //console.log(tweets);
-            console.log(uniqueIds);
+            //console.log(uniqueIds);
         })
         .catch(err => {
             // error catching
             console.log(err)
         });
+    //console.log(tweets);
+    refreshTweets();
 }
 
 /**
@@ -93,7 +96,6 @@ function getTweets() {
  * @returns None, the tweets will be renewed
  */
 function refreshTweets() {
-    getTweets();
     // feel free to use a more complicated heuristics like in-place-patch, for simplicity, we will clear all tweets and append all tweets back
     // {@link https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript}
     //console.log('deleting content from feed');
