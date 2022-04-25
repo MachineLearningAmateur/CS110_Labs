@@ -1,4 +1,4 @@
-import { twitterServerUrl } from './credentials.js';
+import { twitterServerUrl } from './credentials.js'; //to prevent leaking the url of server
 
 let nInterval;
 let live;
@@ -14,20 +14,27 @@ window.onload = function () {//initial call
     document.getElementById('searchBar').addEventListener("input", handleSearch);
     tweetContainer = document.getElementsByClassName('feed')[0];
     nInterval = setInterval(updateFeed, 5000);
+    getTweets();
 }
 
 /**
  * Gets called when searchbar is used
  *
  * @param event
- * @returns None, calls pauseFilter to filter the tweets
+ * @returns None, calls pauseFilter to filter the tweets based on username and text content
  */
 function handleSearch(event) {
     searchString = event.target.value.trim().toLowerCase();
-    console.log(searchString);
+    //console.log(searchString);
     pauseFilter();
 }
 
+/**
+ * Goes through the tweets and filters the list based on searchString
+ *
+ * @param None 
+ * @returns None, filters the tweets
+ */
 function pauseFilter() {
     let filtered = tweets.filter(obj=> {
         let text = String(obj['text']);
@@ -36,6 +43,13 @@ function pauseFilter() {
     });
     appendToFeed(filtered);
 }
+
+/**
+ * Converts the date from UTC to a readable format
+ *
+ * @param Date 
+ * @returns None, returns a date in readable format
+ */
 function convertDate(date) {
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -53,7 +67,7 @@ function convertDate(date) {
 function updateFeed() {
     //console.log(live);
     if (live) {
-        refreshTweets();
+        getTweets();
     }
 }
 
@@ -61,12 +75,12 @@ function updateFeed() {
  * Retrieves tweets from the server
  *
  * @param None
- * @returns None, new tweets will be appended to tweets
+ * @returns None, new tweets will be appended to tweets; function will wait for fetch before calling refreshTweetss
  */
-function getTweets() {
+async function getTweets() {
     const url = twitterServerUrl;
 
-    fetch(url)
+    await fetch(url)
         .then(res => res.json()).then(data => {
             // do something to parse data
             //console.log(data);
@@ -78,12 +92,14 @@ function getTweets() {
                 }
             });
             //console.log(tweets);
-            console.log(uniqueIds);
+            //console.log(uniqueIds);
         })
         .catch(err => {
             // error catching
             console.log(err)
         });
+    //console.log(tweets);
+    refreshTweets();
 }
 
 /**
@@ -93,7 +109,6 @@ function getTweets() {
  * @returns None, the tweets will be renewed
  */
 function refreshTweets() {
-    getTweets();
     // feel free to use a more complicated heuristics like in-place-patch, for simplicity, we will clear all tweets and append all tweets back
     // {@link https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript}
     //console.log('deleting content from feed');
