@@ -8,7 +8,7 @@ let tweetContainer;
 window.onload = function() {
     let checkBox = document.getElementsByName('liveFeed')[0];
     checkBox.addEventListener("click", (evt) => {live = checkBox.checked});
-    tweetContainer = document.getElementById('feed');
+    tweetContainer = document.getElementsByClassName('feed')[0];
     nInterval = setInterval(updateFeed, 5000);
 }
 /**
