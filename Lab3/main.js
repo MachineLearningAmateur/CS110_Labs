@@ -73,7 +73,7 @@ function updateFeed() {
 
 /**
  * Retrieves tweets from the server
- *
+ * @async
  * @param None
  * @returns None, new tweets will be appended to tweets; function will wait for fetch before calling refreshTweetss
  */
@@ -104,25 +104,11 @@ async function getTweets() {
 
 /**
  * Removes all existing tweets from tweetList and then append all tweets back in
- * @async
  * @param {Array<Object>} tweets - A list of tweets
  * @returns None, the tweets will be renewed
  */
 function refreshTweets() {
-    // feel free to use a more complicated heuristics like in-place-patch, for simplicity, we will clear all tweets and append all tweets back
-    // {@link https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript}
-    //console.log('deleting content from feed');
-
-    // create an unordered list to hold the tweets
-    // {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement}
-    // append the tweetList to the tweetContainer
-    // {@link https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild}
-
-    // all tweet objects (no duplicates) stored in tweets variable
-
-    // filter on search text
-    // {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter}
-
+    //filter for current tweets from live update based on given searchString 
     let filtered = tweets.filter(obj=> {
         let text = String(obj['text']);
         let name = String(obj['user']['name']);
@@ -140,32 +126,22 @@ function refreshTweets() {
 
     //the code below appends all the sorted posts to the feed container.
     appendToFeed(sortedResult);
-    // sortedResult.forEach(tweetObject => {
-    //     // create a container for individual tweet
-    //     const tweet = document.createElement("li");
-
-    //     // e.g. create a div holding tweet content
-    //     const tweetContent = document.createElement("div");
-    //     // create a text node "safely" with HTML characters escaped
-    //     // {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode}
-    //     const tweetText = document.createTextNode(tweetObject.text);
-    //     // append the text node to the div
-    //     tweetContent.appendChild(tweetText);
-
-    //     // you may want to put more stuff here like time, username...
-    //     tweet.appendChild(tweetContent);
-
-    //     // finally append your tweet into the tweet list
-    //     tweetList.appendChild(tweet);
-    // });
 }
 
+/**
+ * Appends all posts to the feed
+ * @param Array
+ * @returns None, will append each obj from the tweets list onto the feed 
+ */
 function appendToFeed(passIn) {
     while (tweetContainer.firstChild) {
         tweetContainer.removeChild(tweetContainer.firstChild);
     }
-    const tweetList = document.createElement("ul");
-    tweetList.className = "ulFeed"
+    let tweetList;
+    if(passIn.length != 0) {
+        tweetList = document.createElement("ul");
+        tweetList.className = "ulFeed";
+    }
 
     passIn.forEach((obj) => {
         var post = document.createElement("li");
@@ -208,5 +184,7 @@ function appendToFeed(passIn) {
         tweetList.appendChild(post);
         //console.log(obj);
     });
-    tweetContainer.appendChild(tweetList);
+    if (passIn.length != 0){
+        tweetContainer.appendChild(tweetList);
+    }
 }
