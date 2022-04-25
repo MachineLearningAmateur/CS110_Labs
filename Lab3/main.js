@@ -16,18 +16,6 @@ class Post {
         this.text = null;
         this.next = null;
       }
-      next() {
-          return this.next;
-      }
-      id() {
-          return this.id;
-      }
-      author() {
-        return this.author;
-    }
-        date() {
-        return this.date;
-    }
 }
 
 class PostFeed {
@@ -40,15 +28,6 @@ class PostFeed {
             this.tail.next = post;
             this.tail = post;
             this.length++;
-      }
-      length() {
-        return this.length;
-      }
-      head() {
-          return this.head;
-      }
-      tail() {
-          return this.tail;
       }
 }
 
