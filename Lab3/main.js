@@ -6,6 +6,7 @@ let tweets = [];
 let tweetContainer;
 let searchString = ""; 
 
+
 window.onload = function() {
     let checkBox = document.getElementsByName('liveFeed')[0];
     checkBox.addEventListener("click", (evt) => {live = checkBox.checked});
@@ -44,6 +45,7 @@ function getTweets() {
     console.log(err) });
     
     refreshTweets(tweets);
+
 }
 
 /**
