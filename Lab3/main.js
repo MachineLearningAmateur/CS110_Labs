@@ -1,6 +1,6 @@
 // specify a url, in this case our web server
 
-var serverURL = "ec2-18-209-247-77.compute-1.amazonaws.com:3000/"
+var serverURL = "ec2-18-209-247-77.compute-1.amazonaws.com:3000/";
 
 var feed = [];
 
@@ -16,17 +16,52 @@ class Post {
         this.text = null;
         this.next = null;
       }
-      
+      next() {
+          return this.next;
+      }
+      id() {
+          return this.id;
+      }
+      author() {
+        return this.author;
+    }
+        date() {
+        return this.date;
+    }
 }
 
 class PostFeed {
     constructor(head) {
         this.head = head;
-        this.length = null;
+        this.length = 1;
+        this.tail = head;
       }
-      push () {
-          
+      push(post) {
+            this.tail.next = post;
+            this.tail = post;
+            this.length++;
       }
+      length() {
+        return this.length;
+      }
+      head() {
+          return this.head;
+      }
+      tail() {
+          return this.tail;
+      }
+}
+
+function test() {
+    let jason = new Post("jason");
+    let jenny = new Post("jenny");
+    let people = new PostFeed(jason);
+    people.push(jenny);
+    let pointer = people.head;
+    while (pointer != null) {
+        console.log(pointer.id);
+        pointer = pointer.next;
+    }
 }
 
 
@@ -46,13 +81,12 @@ function pullFeed() {
     })
     .catch(err => {
         // error catching
-    console.log(err) }) 
+    console.log(err); })
 }
 
-let searchString = "" // here we use a global variable
+let searchString = ""; // here we use a global variable
 
 const handleSearch = event => {
     searchString = event.target.value.trim().toLowerCase();
     // you may want to update the displayed HTML here too
 }
-document.getElementById("searchBar").addEventListener("input", handleSearch)
