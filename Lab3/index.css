@@ -18,6 +18,7 @@ body {
   margin-top: 46px;
   display: inline-flex;
   justify-content: center;
+  height: 100%;
 }
 
 .custom-nav {
@@ -176,17 +177,21 @@ nav div a:hover {
 .post {
   border-color: #67757f;  
   padding: 10px;
-  font-size: 120%;
+  font-size: 100%;
+  width: 100%;
   border-bottom: 1px solid #e6ecf0;
   display: flex;
+  align-items: center;
 }
 
 .post_image {
+  display: flex;
   float: left;
+  height: 100%;
   border-radius: 100%;
-  max-width: 85px;
+  min-width: 85px;
   max-height: 85px;
-  padding: 10px;
+  margin: 8px;
 }
 
 .post_text {
@@ -200,6 +205,7 @@ nav div a:hover {
   display: block;
   justify-content: space-between;
   text-align: start;
+  width: 100%;
 }
 
 .post_author_name {
@@ -208,19 +214,23 @@ nav div a:hover {
 }
 
 .post_author_id_date {
+  display: flex;
   color: #959799;
   font-weight: 400;
+  justify-content: space-between;
 }
 
 .suggestions {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 290px;
   background-color: white;
   float: right;
   margin: 0 25px;
   margin-top: 25px;
   padding: 10px;
-  height: 25vh
+  height: 100%;
+  max-height: max-content;
 }
 
 .suggested_profile {
@@ -263,6 +273,11 @@ nav div a:hover {
   margin: 5px 25px;
   justify-content: space-between;
 }
+
+.ulFeed {
+  padding-inline-start: 0px;
+}
+
 /* TODO: Create CSS for your Twitter Mockup */
 
 @media only screen and (max-width: 1200px) {
