@@ -75,7 +75,7 @@ function updateFeed() {
  * Retrieves tweets from the server
  * @async
  * @param None
- * @returns None, new tweets will be appended to tweets; function will wait for fetch before calling refreshTweetss
+ * @returns None, new tweets will be appended to tweets; function will wait for fetch before calling refreshTweets
  */
 async function getTweets() {
     const url = twitterServerUrl;
@@ -98,7 +98,7 @@ async function getTweets() {
             // error catching
             console.log(err)
         });
-    //console.log(tweets);
+    console.log(tweets);
     refreshTweets();
 }
 
@@ -117,21 +117,18 @@ function refreshTweets() {
 
     // sort by date
     // {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort}
-    const sortedResult = filtered.sort((left, right) => {
-        new Date(left['created_at']) - new Date(right['created_at']);
-    });
 
     // execute the arrow function for each tweet
     // {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach}
 
     //the code below appends all the sorted posts to the feed container.
-    appendToFeed(sortedResult);
+    appendToFeed(filtered);
 }
 
 /**
  * Appends all posts to the feed
  * @param Array
- * @returns None, will append each obj from the tweets list onto the feed 
+ * @returns None, will append each obj from the tweets list onto the feed in a readable format
  */
 function appendToFeed(passIn) {
     while (tweetContainer.firstChild) {
@@ -143,7 +140,16 @@ function appendToFeed(passIn) {
         tweetList.className = "ulFeed";
     }
 
-    passIn.forEach((obj) => {
+    const sortedResult = passIn.sort((left, right) => {
+        let leftDate = new Date(left['created_at']);
+        let rightDate = new Date(right['created_at']);
+        // if (leftDate.toLocaleDateString == rightDate.toLocaleDateString) {
+        //     return leftDate - rightDate;
+        return leftDate - rightDate;
+    });
+    
+    //creates a li element for each post
+    sortedResult.reverse().forEach((obj) => {
         var post = document.createElement("li");
         post.className = "post";
 
@@ -161,8 +167,9 @@ function appendToFeed(passIn) {
         var post_author_id_date = document.createElement("span");
         post_author_id_date.className = "post_author_id_date";
         var d = new Date(obj['created_at']);
-        let date_post = convertDate(d);
-
+        //let date_post = convertDate(d);
+        let date_post = d.toLocaleString();
+        console.log(date_post);
         var author = document.createElement("p");
         author.textContent = "@" + obj['user']['name'];
         var date = document.createElement("p");
