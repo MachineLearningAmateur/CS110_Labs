@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import ListItem from "./Components/ListItem"
 import React from 'react';
+import './App.css'
 import InputBox from './Components/InputBox';
 
 class App extends React.Component {

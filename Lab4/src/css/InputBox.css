@@ -2,20 +2,22 @@
     max-width: 500px;
     margin: 30px auto;
     overflow: auto;
-    min-height: 300px;
+    min-height: 280px;
     border: 5px solid steelblue;
     padding: 30px;
     border-radius: 5px;
     background-color: white;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    min-height: 300px;
+    justify-content: space-between;
+    min-height: max-content;
+    gap: 20px;
   }
   
   .name {
@@ -26,7 +28,19 @@
     min-height: 225px;
     resize: none;
   }
+  
+  .submit {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    margin-left: auto;
+    background-color: lightblue;
+    width: 20%;
+    font-weight: 700;
+  }
+
   .post {
     font-weight: 750;
     font-size: xx-large;
   }
+  

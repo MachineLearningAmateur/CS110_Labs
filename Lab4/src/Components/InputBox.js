@@ -20,6 +20,7 @@ export class InputBox extends Component {
                     </input>
                     <textarea className="text">
                     </textarea>
+                    <button className="submit">Submit</button>
                 </div>
             </div>
         )
