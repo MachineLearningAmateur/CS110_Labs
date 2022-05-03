@@ -1,0 +1,31 @@
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    overflow: auto;
+    min-height: 300px;
+    border: 5px solid steelblue;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 325px;
+  }
+  
+  .name {
+    min-height: 25px;
+  }
+
+  .text {
+    min-height: 250px;
+  }
+  .post {
+    font-weight: 750;
+    font-size: xx-large;
+  }
