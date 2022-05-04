@@ -1,30 +1,17 @@
 import logo from './logo.svg';
 import ListItem from "./Components/ListItem"
-import React from 'react';
 import './App.css'
 import InputBox from './Components/InputBox';
+import OutputBox from './Components/OutputBox';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      "tasks": [],
-      "input": '',
-      "name": 'temp'
-    }
-  }
+import React from 'react'
 
-  addToDo() {
-    //changes our state and adds comment
-    //when state is called, render gets called
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <InputBox/>
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div className="App">
+    <InputBox/>
+    <OutputBox/>
+  </div>
+  )
 }
-export default App;
+

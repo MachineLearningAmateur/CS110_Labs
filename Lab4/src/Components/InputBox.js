@@ -1,30 +1,33 @@
-import React, { Component } from 'react'
+
 import '../css/InputBox.css'
+import React, {useState} from 'react'
 
-export class InputBox extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
+export default function InputBox() {
+    const [name, updateName] = useState("");
+    const [text, updateText] = useState("");
+    //useState is used to define functions that can be used to set the state | const [variable, function] = useState("default value")
+    const submit = (event) => {
+        event.preventDefault();
+        updateName("")
+        updateText("")
+        console.log(name)
+        console.log(text)
     }
 
-    render() {
-        return (
-            <div className="container">
-                <div className="post">
-                    New Post
-                </div>
-                <div className="content">
-                    <input className="name">
-                    </input>
-                    <textarea className="text">
-                    </textarea>
-                    <button className="submit">Submit</button>
-                </div>
+    return (
+        <form className="container" onSubmit={submit}>
+            <div className="post">
+                New Post
             </div>
-        )
-    }
+            <div className="content">
+                <input className="name" value={name} onChange={(evt)=> {updateName(evt.target.value)}}>
+                </input>
+                <textarea className="text" value={text} onChange={(evt)=> {updateText(evt.target.value)}}>
+                </textarea>
+                <button className="submit">Submit</button>
+            </div>
+        </form>
+    )
 }
 
-export default InputBox
+
