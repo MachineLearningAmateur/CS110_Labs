@@ -8,6 +8,9 @@ export default function InputBox() {
     //useState is used to define functions that can be used to set the state | const [variable, function] = useState("default value")
     const submit = (event) => {
         event.preventDefault();
+        if (name == "" || text == "") {
+            return
+        }
         updateName("")
         updateText("")
         console.log(name)
@@ -20,9 +23,9 @@ export default function InputBox() {
                 New Post
             </div>
             <div className="content">
-                <input className="name" value={name} onChange={(evt)=> {updateName(evt.target.value)}}>
+                <input className="name" placeholder="Name" value={name} onChange={(evt)=> {updateName(evt.target.value)}}>
                 </input>
-                <textarea className="text" value={text} onChange={(evt)=> {updateText(evt.target.value)}}>
+                <textarea className="text" placeholder="Give us your thoughts!" value={text} onChange={(evt)=> {updateText(evt.target.value)}}>
                 </textarea>
                 <button className="submit">Submit</button>
             </div>
