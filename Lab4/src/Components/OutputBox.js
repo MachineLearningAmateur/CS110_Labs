@@ -1,15 +1,15 @@
 import React from 'react'
 import '../css/OutputBox.css'
-export default function OutputBox() {
+import Posts from './Posts'
+export default function OutputBox(props) {
 
-    const createPost = () => {
-        let posts = React.createElement('div', {}, 'Testing')
-        document.getElementById('posts')
-    }
+
     return (
         <div className="postContainer">
             <div className="comments">Comments</div>
-            <div id="posts"></div>
+            <div id="posts">
+                <Posts temp={props}/>
+            </div>
         </div>
     )
 }

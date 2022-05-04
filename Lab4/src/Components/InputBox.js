@@ -2,19 +2,18 @@
 import '../css/InputBox.css'
 import React, {useState} from 'react'
 
-export default function InputBox() {
+export default function InputBox(props) {
     const [name, updateName] = useState("");
     const [text, updateText] = useState("");
     //useState is used to define functions that can be used to set the state | const [variable, function] = useState("default value")
     const submit = (event) => {
         event.preventDefault();
-        if (name == "" || text == "") {
+        if (name === "" || text === "") {
             return
         }
-        updateName("")
-        updateText("")
-        console.log(name)
-        console.log(text)
+        props.handleSubmit(name, text);
+        updateName("");
+        updateText("");
     }
 
     return (
