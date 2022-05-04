@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css'
 import InputBox from './Components/InputBox';
 import OutputBox from './Components/OutputBox';
@@ -9,7 +9,7 @@ export default function App() {
 
   const addPost = (name, text) => {
       createComment(name, text).then((comment)=> {
-        setBackendComments([comment, ...backendComments]);
+        setBackendComments([...backendComments, comment]);
         console.log(comment)
       })
   }
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <div className="App">
     <InputBox handleSubmit={addPost}/>
-    <OutputBox backend={backendComments}/>
+    <OutputBox body={backendComments}/>
   </div>
   )
 }
