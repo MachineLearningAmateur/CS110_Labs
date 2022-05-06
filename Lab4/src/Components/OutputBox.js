@@ -1,14 +1,13 @@
 import React from 'react'
 import '../css/OutputBox.css'
-import Posts from './Posts'
-export default function OutputBox(props) {
+import Post from './Post'
 
-
+export default function OutputBox({Posts}) {
     return (
         <div className="postContainer">
             <div className="comments">Comments</div>
             <div id="posts">
-                <Posts temp={props}/>
+                <Post/>
             </div>
         </div>
     )

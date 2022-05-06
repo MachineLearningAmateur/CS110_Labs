@@ -1,35 +1,64 @@
+import "../css/InputBox.css";
+import React, { createContext, useState} from "react";
+import OutputBox from "./OutputBox";
 
-import '../css/InputBox.css'
-import React, {useState} from 'react'
+export const postsContext = createContext(null);
 
-export default function InputBox(props) {
-    const [name, updateName] = useState("");
-    const [text, updateText] = useState("");
-    //useState is used to define functions that can be used to set the state | const [variable, function] = useState("default value")
-    const submit = (event) => {
-        event.preventDefault();
-        if (name === "" || text === "") {
-            return
-        }
-        props.handleSubmit(name, text);
-        updateName("");
-        updateText("");
+export default function InputBox() {
+  const [comment, updateComment] = useState({ userName: "", text: "" });
+  const [commentArray, updateArray] = useState([]); //creates a list
+//   useEffect(() => {
+//     console.log(commentArray);
+//   }, [commentArray]);
+
+  const handleSubmit = async (formData) => {
+    // event.preventDefault();
+    if (formData.userName === "" || formData.text === "") {
+      return;
     }
 
-    return (
-        <form className="container" onSubmit={submit}>
-            <div className="post">
-                New Post
-            </div>
-            <div className="content">
-                <input className="name" placeholder="Name" value={name} onChange={(evt)=> {updateName(evt.target.value)}}>
-                </input>
-                <textarea className="text" placeholder="Give us your thoughts!" value={text} onChange={(evt)=> {updateText(evt.target.value)}}>
-                </textarea>
-                <button className="submit">Submit</button>
-            </div>
-        </form>
-    )
+    updateArray([...commentArray, { formData }]);
+    let copy = { ...comment };
+    copy.userName = "";
+    copy.text = "";
+    updateComment(() => ({ ...copy }));
+  };
+
+  //function async handle submit () {}
+  return (
+    <div>
+    <form
+      className="container"
+      onSubmit={(event) => {
+        event.preventDefault();
+        handleSubmit(comment);
+      }}
+    >
+      <div className="post">New Post</div>
+      <div className="content">
+        <input
+          maxlength="30"
+          className="name"
+          placeholder="Name"
+          value={comment.userName}
+          onChange={(event) => {
+            updateComment({ ...comment, userName: event.target.value }); //modifies userName and keeps everything else the same in comment
+          }}
+        ></input>
+        <textarea
+          className="text"
+          placeholder="Give us your thoughts!"
+          value={comment.text}
+          onChange={(event) => {
+            updateComment({ ...comment, text: event.target.value });
+          }}
+        ></textarea>
+        <button className="submit">Submit</button>
+      </div>
+    </form>
+    <postsContext.Provider value={commentArray}>
+    <OutputBox/>
+    </postsContext.Provider>
+    </div>
+  );
 }
-
-
