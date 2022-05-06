@@ -1,5 +1,5 @@
 ul {
-    padding-inline-start: 1em;
+    padding-inline-start: 0;
 }
 
 .Comment {
@@ -9,6 +9,7 @@ ul {
     row-gap: 1em;
     list-style: none;
     overflow-wrap: break-word;
+    width: 100%;
 }
 
 .userName {

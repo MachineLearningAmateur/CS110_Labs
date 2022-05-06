@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import { postsContext } from "./InputBox";
 import "../css/Post.css";
 import Vote from "./Vote";
+import Reply from "./Reply"
 
 export default function Post(props) {
   const commentArray = useContext(postsContext);
@@ -10,10 +11,11 @@ export default function Post(props) {
     <ul>
       {commentArray.map((comment, index) => {
         return (
-          <div className="commentContainer">
-            <li key={index} className="Comment">
+          <div id={index} className="commentContainer">
+            <li className="Comment">
               <div className="userName">{comment.formData.userName}</div>
               <div className="userText">{comment.formData.text}</div>
+              <Reply/>
             </li>
             <Vote/>
           </div>
