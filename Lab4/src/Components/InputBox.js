@@ -18,10 +18,7 @@ export default function InputBox() {
     }
 
     updateArray([...commentArray, { formData }]);
-    let copy = { ...comment };
-    copy.userName = "";
-    copy.text = "";
-    updateComment(() => ({ ...copy }));
+    updateComment({userName: "", text: ""});
   };
 
   //function async handle submit () {}
