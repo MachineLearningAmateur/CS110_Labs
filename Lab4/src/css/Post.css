@@ -1,0 +1,25 @@
+ul {
+    padding-inline-start: 1em;
+}
+
+.Comment {
+    display: flex;
+    flex-direction: column;
+    min-height: max-content;
+    row-gap: 1em;
+    list-style: none;
+}
+
+.userName {
+    font-weight: 500;
+    color: #5f7fb4;
+}
+
+.commentContainer {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 1px 1px;
+    border: 1px solid black;
+    padding: 1em;
+    margin: 5px;
+}
