@@ -15,7 +15,7 @@ export default function Post(props) {
             <li className="Comment">
               <div className="userName">{comment.formData.userName}</div>
               <div className="userText">{comment.formData.text}</div>
-              <Reply/>
+              <Reply depth={2}/>
             </li>
             <Vote/>
           </div>
