@@ -13,7 +13,7 @@ export default function InputBox() {
 
   const handleSubmit = async (formData) => {
     // event.preventDefault();
-    if (formData.userName === "" || formData.text === "") {
+    if (formData.userName.replace(/\s+/g, '') === "" || formData.text.replace(/\s+/g, '') === "") {
       return;
     }
 
@@ -37,7 +37,7 @@ export default function InputBox() {
       <div className="post">New Post</div>
       <div className="content">
         <input
-          maxlength="30"
+          maxLength="30"
           className="name"
           placeholder="Name"
           value={comment.userName}
