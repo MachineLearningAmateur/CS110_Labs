@@ -17,7 +17,7 @@ export default function Vote() {
         <button onClick={upVote}>
             ^
         </button>
-        <div>
+        <div className="voteCount">
             {vote}
         </div>
         <button onClick={downVote}>

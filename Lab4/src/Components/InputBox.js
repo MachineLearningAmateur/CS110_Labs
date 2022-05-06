@@ -37,6 +37,7 @@ export default function InputBox() {
       <div className="post">New Post</div>
       <div className="content">
         <input
+          maxlength="30"
           className="name"
           placeholder="Name"
           value={comment.userName}

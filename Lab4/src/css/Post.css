@@ -8,11 +8,13 @@ ul {
     min-height: max-content;
     row-gap: 1em;
     list-style: none;
+    overflow-wrap: break-word;
 }
 
 .userName {
     font-weight: 500;
     color: #5f7fb4;
+    overflow-wrap: break-word;
 }
 
 .commentContainer {
