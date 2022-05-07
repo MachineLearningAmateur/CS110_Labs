@@ -9,7 +9,7 @@ export default function ReplyInput(props) {
     if (formData.userName.replace(/\s+/g, '') === "" || formData.content.replace(/\s+/g, '') === "") {
         return;
     }
-    // props.toggleReply(!reply);
+    updateReply({userName:"", content: ""});
     updateReplies([...replies, {formData}])
     props.toggle.toggleSubmit(true);
   };
@@ -30,7 +30,7 @@ export default function ReplyInput(props) {
       <textarea
         className="text"
         placeholder="Give us your thoughts!"
-          value={reply.reply}
+          value={reply.content}
           onChange={(event) => {
             updateReply({ ...reply, content: event.target.value });
           }}

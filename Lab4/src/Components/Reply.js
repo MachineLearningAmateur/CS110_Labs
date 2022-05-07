@@ -11,7 +11,6 @@ export const replyContext = createContext(null);
 export default function Reply({depth}) {
   const [replyBool, toggleReply] = useState(false);
   const [submitted, toggleSubmit] = useState(false);
-
   const [reply, updateReply] = useState({ userName: "", content: "" });
   const [replies, updateReplies] = useState([]);
 
@@ -23,11 +22,9 @@ export default function Reply({depth}) {
     toggleReply(!replyBool);
   };
 
-  let replyId
+  let replyId;
   return (
-    <replyContext.Provider
-      value={{ reply, updateReply, replies, updateReplies }}
-    >
+    <replyContext.Provider value={{reply, updateReply, replies, updateReplies}}>
       <div className="ReplyContainer">
         {submitted ? null : (
           <button className="replyButton" onClick={displayReply}>
@@ -58,6 +55,6 @@ export default function Reply({depth}) {
           </div>
         ) : null}
       </div>
-    </replyContext.Provider>
+      </replyContext.Provider>
   );
 }

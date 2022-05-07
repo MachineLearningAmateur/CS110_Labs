@@ -7,7 +7,8 @@ export const postsContext = createContext(null);
 
 export default function App() {
   const [commentArray, updateArray] = useState([]);
-  
+  // const [reply, updateReply] = useState({ userName: "", content: "" });
+  // const [replies, updateReplies] = useState([]);
   return (
     <div className="App">
     <postsContext.Provider value={{commentArray, updateArray}}>
