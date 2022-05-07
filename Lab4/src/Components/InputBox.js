@@ -6,12 +6,8 @@ export default function InputBox() {
   const [comment, updateComment] = useState({ userName: "", text: "" });
 
   const {commentArray, updateArray} = useContext(postsContext);
-//   useEffect(() => {
-//     console.log(commentArray);
-//   }, [commentArray]);
 
   const handleSubmit = async (formData) => {
-    // event.preventDefault();
     if (formData.userName.replace(/\s+/g, '') === "" || formData.text.replace(/\s+/g, '') === "") {
       return;
     }
@@ -20,7 +16,7 @@ export default function InputBox() {
     updateComment({userName: "", text: ""});
   };
 
-  //function async handle submit () {}
+  //function async handleSubmit () {}
   return (
     <div>
     <form

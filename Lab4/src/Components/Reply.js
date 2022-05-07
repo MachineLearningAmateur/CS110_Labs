@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import ReplyInput from "./ReplyInput";
@@ -6,13 +6,17 @@ import Vote from "./Vote";
 
 import "../css/Reply.css";
 
-export const replyContext = createContext(null);
 
 export default function Reply({depth}) {
   const [replyBool, toggleReply] = useState(false);
   const [submitted, toggleSubmit] = useState(false);
   const [reply, updateReply] = useState({ userName: "", content: "" });
   const [replies, updateReplies] = useState([]);
+
+  useEffect(() => {
+    console.log(replies);
+  }, [replies]); 
+
 
   if (depth === 0) {
     return;
@@ -24,7 +28,6 @@ export default function Reply({depth}) {
 
   let replyId;
   return (
-    <replyContext.Provider value={{reply, updateReply, replies, updateReplies}}>
       <div className="ReplyContainer">
         {submitted ? null : (
           <button className="replyButton" onClick={displayReply}>
@@ -32,7 +35,7 @@ export default function Reply({depth}) {
           </button>
         )}
         {replyBool && !submitted ? (
-          <ReplyInput toggle={{ submitted, toggleSubmit }} />
+          <ReplyInput reply={reply} replies={replies} updateReply={updateReply} updateReplies={updateReplies} toggle={{ submitted, toggleSubmit }} />
         ) : null}
         {submitted ? (
           <div className="reply">
@@ -55,6 +58,5 @@ export default function Reply({depth}) {
           </div>
         ) : null}
       </div>
-      </replyContext.Provider>
   );
 }
