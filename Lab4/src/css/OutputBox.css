@@ -4,6 +4,7 @@
     justify-content: center;
     border: 5px solid blueviolet;
     width: 45%;
+    min-width: 500px;
     margin: 0 auto;
     min-height: max-content;
     background-color: white;

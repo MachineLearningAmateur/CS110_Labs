@@ -1,12 +1,11 @@
 import "../css/InputBox.css";
-import React, { createContext, useState} from "react";
-import OutputBox from "./OutputBox";
-
-export const postsContext = createContext(null);
+import React, {useState, useContext} from "react";
+import { postsContext } from "../App";
 
 export default function InputBox() {
   const [comment, updateComment] = useState({ userName: "", text: "" });
-  const [commentArray, updateArray] = useState([]); //creates a list
+
+  const {commentArray, updateArray} = useContext(postsContext);
 //   useEffect(() => {
 //     console.log(commentArray);
 //   }, [commentArray]);
@@ -53,9 +52,9 @@ export default function InputBox() {
         <button className="submit">Submit</button>
       </div>
     </form>
-    <postsContext.Provider value={commentArray}>
+    {/* <postsContext.Provider value={commentArray}>
     <OutputBox/>
-    </postsContext.Provider>
+    </postsContext.Provider> */}
     </div>
   );
 }

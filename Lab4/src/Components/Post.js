@@ -1,24 +1,28 @@
 import React, { useContext} from "react";
-import { postsContext } from "./InputBox";
+import { postsContext } from "../App";
 import "../css/Post.css";
 import Vote from "./Vote";
 import Reply from "./Reply"
 
-export default function Post(props) {
-  const commentArray = useContext(postsContext);
+export default function Post() {
+  const {commentArray, updateArray} = useContext(postsContext);
+  let commentId;
 
   return (
     <ul>
-      {commentArray.map((comment, index) => {
+      {commentArray.map((comment) => {
+        commentId = Math.random().toString(36).substring(2, 9);
         return (
-          <div id={index} className="commentContainer">
-            <li className="Comment">
+          <React.Fragment key={"Comment-" + commentId}>
+          <div className="commentContainer">
+            <li key={"Comment-" + commentId} className="Comment">
               <div className="userName">{comment.formData.userName}</div>
               <div className="userText">{comment.formData.text}</div>
               <Reply depth={2}/>
             </li>
             <Vote/>
           </div>
+          </React.Fragment>
         );
       })}
     </ul>

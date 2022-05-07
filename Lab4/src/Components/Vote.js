@@ -15,7 +15,7 @@ export default function Vote() {
   }
 
   return (
-    <div>
+    <div className="voter">
        <FontAwesomeIcon className="vote" onClick={upVote} icon={faArrowUp} />
         <div className="voteCount">
             {vote}

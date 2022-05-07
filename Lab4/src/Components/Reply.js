@@ -23,11 +23,12 @@ export default function Reply({depth}) {
     toggleReply(!replyBool);
   };
 
+  let replyId
   return (
     <replyContext.Provider
       value={{ reply, updateReply, replies, updateReplies }}
     >
-      <div>
+      <div className="ReplyContainer">
         {submitted ? null : (
           <button className="replyButton" onClick={displayReply}>
             Reply <FontAwesomeIcon icon={faCommentDots} />
@@ -37,17 +38,21 @@ export default function Reply({depth}) {
           <ReplyInput toggle={{ submitted, toggleSubmit }} />
         ) : null}
         {submitted ? (
-          <div>
+          <div className="reply">
             {replies.map((element) => {
+              replyId = Math.random().toString(36).substring(2, 9);
               return (
-                <div className="commentContainer">
-                <div className="Comment">
+                <React.Fragment key={"Reply-" + replyId}>
+                <div className="newReply">
+                <div className="replyChunk">
                   <div className="userName">{element.formData.userName}</div>
                   <div className="userText">{element.formData.content}</div>
-                  <Reply depth={depth - 1}/>
+                  <div></div>
+                </div>
+                <Reply depth={depth - 1}/>
                 </div>
                 <Vote/>
-                </div>
+                </React.Fragment>
               );
             })}
           </div>
