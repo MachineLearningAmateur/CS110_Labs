@@ -34,12 +34,12 @@ export default function Reply({ parentId, depth }) {
   return (
     <replyContext.Provider value={{ reply, updateReply }}>
       <div className="ReplyContainer">
-        {submitted ? null : (
+        {(
           <button className="replyButton" onClick={displayReply}>
             Reply <FontAwesomeIcon icon={faCommentDots} />
           </button>
         )}
-        {replyBool && !submitted ? (
+        {replyBool ? (
           <ReplyInput
             parentId={parentId}
             toggle={{ submitted, toggleSubmit }}

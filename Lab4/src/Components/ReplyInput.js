@@ -17,10 +17,6 @@ export default function ReplyInput({parentId, toggle}) {
     
     toggle.toggleSubmit(true);
   };
-
-  // useEffect(()=> {
-  //   console.log(typeof replies);
-  // },[reply]);
   
   return (
     <form className="content" onSubmit={(event)=> {
