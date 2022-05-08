@@ -7,9 +7,6 @@ export default function InputBox() {
 
   const {commentArray, updateArray} = useContext(postsContext);
 
-  useEffect(()=>{
-    console.log(commentArray);
-  },[commentArray])
   const handleSubmit = async (formData) => {
     if (formData.userName.replace(/\s+/g, '') === "" || formData.text.replace(/\s+/g, '') === "") {
       return;
