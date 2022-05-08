@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import ReplyInput from "./ReplyInput";
 import Vote from "./Vote";
-
+import { postsContext } from "../App";
 import "../css/Reply.css";
 
+export const replyContext = createContext(null);
 
-export default function Reply({depth}) {
+export default function Reply({parentId, depth}) {
   const [replyBool, toggleReply] = useState(false);
   const [submitted, toggleSubmit] = useState(false);
-  const [reply, updateReply] = useState({ userName: "", content: "" });
-  const [replies, updateReplies] = useState([]);
+  const {replies, updateReplies} = useContext(postsContext);
+  const [reply, updateReply] = useState({ userName: "", content: "", parentId: ""});
 
-  useEffect(() => {
+  useEffect(()=>{
     console.log(replies);
-  }, [replies]); 
-
+  },[reply]);
 
   if (depth === 0) {
     return;
@@ -28,6 +28,7 @@ export default function Reply({depth}) {
 
   let replyId;
   return (
+      <replyContext.Provider value={{reply, updateReply}}>
       <div className="ReplyContainer">
         {submitted ? null : (
           <button className="replyButton" onClick={displayReply}>
@@ -35,11 +36,15 @@ export default function Reply({depth}) {
           </button>
         )}
         {replyBool && !submitted ? (
-          <ReplyInput reply={reply} replies={replies} updateReply={updateReply} updateReplies={updateReplies} toggle={{ submitted, toggleSubmit }} />
+          <ReplyInput parentId={parentId} toggle={{ submitted, toggleSubmit }} />
         ) : null}
         {submitted ? (
           <div className="reply">
-            {replies.map((element) => {
+            {replies.filter((element) => {
+              return element.formData.parentId === parentId
+            })
+            .map((element) => {
+              console.log(element);
               replyId = Math.random().toString(36).substring(2, 9);
               return (
                 <React.Fragment key={"Reply-" + replyId}>
@@ -49,14 +54,15 @@ export default function Reply({depth}) {
                   <div className="userText">{element.formData.content}</div>
                   <div></div>
                 </div>
-                <Reply depth={depth - 1}/>
+                <Reply parentId={parentId} depth={depth - 1}/>
                 </div>
                 <Vote/>
                 </React.Fragment>
               );
             })}
           </div>
-        ) : null}
+        ): null}
       </div>
+      </replyContext.Provider>
   );
 }

@@ -1,16 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { postsContext } from "../App";
+import { replyContext } from "./Reply";
 
-export default function ReplyInput({reply, replies, updateReply, updateReplies, toggle}) {
+export default function ReplyInput({parentId, toggle}) {
+  // const [reply, updateReply] = useState({ userName: "", content: "", parentId: ""});
+  const {reply, updateReply} = useContext(replyContext);
+  const {replies, updateReplies} = useContext(postsContext);
 
   const handleReply = async (formData) => {
     if (formData.userName.replace(/\s+/g, '') === "" || formData.content.replace(/\s+/g, '') === "") {
-        console.log('check');
         return;
     }
-    updateReply({userName:"", content: ""});
-    updateReplies([...replies, {formData}])
+    formData.parentId = parentId;
+    updateReplies([...replies, {formData}]);
+    updateReply({userName: "", content: "", parentId: ""});
+    
     toggle.toggleSubmit(true);
   };
+
+  // useEffect(()=> {
+  //   console.log(typeof replies);
+  // },[reply]);
   
   return (
     <form className="content" onSubmit={(event)=> {

@@ -5,20 +5,19 @@ import Vote from "./Vote";
 import Reply from "./Reply"
 
 export default function Post() {
-  const {commentArray, updateArray} = useContext(postsContext);
-  let commentId;
+  const {commentArray} = useContext(postsContext);
 
   return (
     <ul>
       {commentArray.map((comment) => {
-        commentId = Math.random().toString(36).substring(2, 9);
+        // console.log(comment.formData.commentId);
         return (
-          <React.Fragment key={"Comment-" + commentId}>
+          <React.Fragment key={"Comment-" + comment.formData.commentId}>
           <div className="commentContainer">
-            <li key={"Comment-" + commentId} className="Comment">
+            <li key={"Comment-" + comment.formData.commentId} className="Comment">
               <div className="userName">{comment.formData.userName}</div>
               <div className="userText">{comment.formData.text}</div>
-              <Reply depth={2}/>
+              <Reply parentId={comment.formData.commentId} depth={2}/>
             </li>
             <Vote/>
           </div>

@@ -1,19 +1,23 @@
 import "../css/InputBox.css";
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { postsContext } from "../App";
 
 export default function InputBox() {
-  const [comment, updateComment] = useState({ userName: "", text: "" });
+  const [comment, updateComment] = useState({ userName: "", text: "", commentId: ""});
 
   const {commentArray, updateArray} = useContext(postsContext);
 
+  useEffect(()=>{
+    console.log(commentArray);
+  },[commentArray])
   const handleSubmit = async (formData) => {
     if (formData.userName.replace(/\s+/g, '') === "" || formData.text.replace(/\s+/g, '') === "") {
       return;
     }
-
+    formData.commentId = Math.random().toString(36).substring(2, 9);
     updateArray([...commentArray, { formData }]);
-    updateComment({userName: "", text: ""});
+    //console.log(formData.commentId)
+    updateComment({userName: "", text: "", commentId: ""});
   };
 
   //function async handleSubmit () {}
@@ -48,9 +52,6 @@ export default function InputBox() {
         <button className="submit">Submit</button>
       </div>
     </form>
-    {/* <postsContext.Provider value={commentArray}>
-    <OutputBox/>
-    </postsContext.Provider> */}
     </div>
   );
 }
