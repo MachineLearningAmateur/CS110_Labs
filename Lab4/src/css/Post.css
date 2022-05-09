@@ -10,19 +10,22 @@ ul {
     list-style: none;
     overflow-wrap: break-word;
     width: 100%;
+    border-radius: 5px;
 }
 
 .userName {
     font-weight: 500;
     color: #5f7fb4;
     overflow-wrap: break-word;
+    font-weight: 800;
 }
 
 .commentContainer {
     display: flex;
     justify-content: space-between;
     box-shadow: 1px 1px;
-    border: 1px solid black;
     padding: 1em;
     margin: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
 }

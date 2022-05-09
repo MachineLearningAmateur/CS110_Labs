@@ -1,10 +1,9 @@
 import React, { useState, useContext, createContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import ReplyInput from "./ReplyInput";
 import Vote from "./Vote";
 import { postsContext } from "../App";
 import "../css/Reply.css";
+import Button from 'react-bootstrap/Button';
 
 export const replyContext = createContext(null);
 
@@ -35,9 +34,7 @@ export default function Reply({ parentId, depth }) {
     <replyContext.Provider value={{ reply, updateReply }}>
       <div className="ReplyContainer">
         {(
-          <button className="replyButton" onClick={displayReply}>
-            Reply <FontAwesomeIcon icon={faCommentDots} />
-          </button>
+          <button type="button" class="btn btn-primary" onClick={displayReply} >Reply</button>
         )}
         {replyBool ? (
           <ReplyInput
