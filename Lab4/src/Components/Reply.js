@@ -36,7 +36,7 @@ export default function Reply({ parentId, depth }) {
       <div className="ReplyContainer">
         {(
           <div className="reply-button"> 
-            <Button type="button" className="btn btn-outline-primary" onClick={displayReply} >Reply</Button>
+            <button type="button" className="btn btn-outline-primary" onClick={displayReply} >Reply</button>
           </div>
         )}
         {replyBool ? (
@@ -48,7 +48,7 @@ export default function Reply({ parentId, depth }) {
         ) : null}
         {submitted ? (
           <div className="reply">
-            {currReplies.map((element, index) => {
+            {currReplies.map((element) => {
               replyId = Math.random().toString(36).substring(2, 9);
               if (element.formData.depth === depth)
               return (
