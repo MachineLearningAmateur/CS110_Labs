@@ -34,7 +34,7 @@ export default function Reply({ parentId, depth }) {
     <replyContext.Provider value={{ reply, updateReply }}>
       <div className="ReplyContainer">
         {(
-          <div class="reply-button"> 
+          <div className="reply-button"> 
             <button type="button" class="btn btn-outline-primary" onClick={displayReply} >Reply</button>
           </div>
         )}
