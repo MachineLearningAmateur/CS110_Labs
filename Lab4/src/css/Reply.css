@@ -32,6 +32,7 @@ button {
     justify-content: space-evenly;
     width: 100%;
     row-gap: 1em;
+    border-bottom: black 1px solid;
 }
 
 .newReply {

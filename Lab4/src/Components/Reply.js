@@ -43,7 +43,7 @@ export default function Reply({ parentId, depth }) {
           <ReplyInput
             parentId={parentId}
             depth={depth}
-            toggle={{ submitted, toggleSubmit }}        
+            toggle={{ replyBool, toggleReply, submitted, toggleSubmit }}        
           />
         ) : null}
         {submitted ? (

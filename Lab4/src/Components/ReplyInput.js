@@ -15,7 +15,7 @@ export default function ReplyInput({parentId, depth, toggle}) {
     formData.depth = depth;
     updateReplies([...replies, {formData}]);
     updateReply({userName: "", content: "", parentId: ""});
-    
+    toggle.toggleReply(!toggle.replyBool);
     toggle.toggleSubmit(true);
   };
   
