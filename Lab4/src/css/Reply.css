@@ -17,7 +17,7 @@ button {
 
 .reply {
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     justify-content: space-between;
     border: 1px solid black;
@@ -36,4 +36,6 @@ button {
 
 .newReply {
     width: 100%;
+    display: flex;
+
 }

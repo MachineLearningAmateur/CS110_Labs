@@ -61,8 +61,8 @@ export default function Reply({ parentId, depth }) {
                       <div className="userText">{element.formData.content}</div>
                       <div></div>
                     </div>
+                    <Vote />
                   </div>
-                  <Vote />
                 </React.Fragment>
               );
             })}
