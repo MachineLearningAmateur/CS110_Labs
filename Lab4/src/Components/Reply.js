@@ -35,7 +35,7 @@ export default function Reply({ parentId, depth }) {
       <div className="ReplyContainer">
         {(
           <div className="reply-button"> 
-            <button type="button" class="btn btn-outline-primary" onClick={displayReply} >Reply</button>
+            <Button type="button" class="btn btn-outline-primary" onClick={displayReply} >Reply</Button>
           </div>
         )}
         {replyBool ? (
