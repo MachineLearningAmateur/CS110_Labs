@@ -15,6 +15,7 @@ export default function Reply({ parentId, depth }) {
     userName: "",
     content: "",
     parentId: "",
+    depth: ""
   });
 
   if (depth === 2) {
@@ -35,12 +36,13 @@ export default function Reply({ parentId, depth }) {
       <div className="ReplyContainer">
         {(
           <div className="reply-button"> 
-            <Button type="button" class="btn btn-outline-primary" onClick={displayReply} >Reply</Button>
+            <Button type="button" className="btn btn-outline-primary" onClick={displayReply} >Reply</Button>
           </div>
         )}
         {replyBool ? (
           <ReplyInput
             parentId={parentId}
+            depth={depth}
             toggle={{ submitted, toggleSubmit }}        
           />
         ) : null}
@@ -48,7 +50,7 @@ export default function Reply({ parentId, depth }) {
           <div className="reply">
             {currReplies.map((element, index) => {
               replyId = Math.random().toString(36).substring(2, 9);
-              if (index === depth)
+              if (element.formData.depth === depth)
               return (
                 <React.Fragment key={"Reply-" + replyId}>
                   <div className="newReply">
