@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { postsContext } from "../App";
 import { replyContext } from "./Reply";
 
-export default function ReplyInput({parentId, toggle}) {
+export default function ReplyInput({parentId, depth, toggle}) {
   // const [reply, updateReply] = useState({ userName: "", content: "", parentId: ""});
   const {reply, updateReply} = useContext(replyContext);
   const {replies, updateReplies} = useContext(postsContext);
@@ -12,6 +12,7 @@ export default function ReplyInput({parentId, toggle}) {
         return;
     }
     formData.parentId = parentId;
+    formData.depth = depth;
     updateReplies([...replies, {formData}]);
     updateReply({userName: "", content: "", parentId: ""});
     
