@@ -19,7 +19,7 @@ app.post('/book', (req, res) => {
     const book = req.body; //looks at the body of the request
     console.log(book);
     books.push(book);
-    res.send('Book is added to the database');
+    res.send('Book has been added to the database');
 });
 
 app.listen(port, ()=> console.log('Hello world app listening on port'));
