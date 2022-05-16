@@ -19,7 +19,25 @@ app.post('/book', (req, res) => {
     const book = req.body; //looks at the body of the request
     console.log(book);
     books.push(book);
-    res.send('Book has been added to the database');
+    //res.send('Book has been added to the database');
 });
+
+app.get('/books', (req, res) => {
+    res.json(books);
+});
+
+app.post('/book/:isbn', (req, res) => {
+    //reading isbn from the URL
+    const isbn = req.params.isbn
+    const newBook = req.body;
+
+    for (let i = 0; i < books.length; i++) {
+        let book = books[i]
+        if (book.isbn === isbn) {
+            books[i] = newBook;
+        }
+    }
+    res.send('Book has been edited!');
+})
 
 app.listen(port, ()=> console.log('Hello world app listening on port'));
