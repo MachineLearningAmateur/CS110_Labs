@@ -1,3 +1,10 @@
+window.onload = (event) => {
+  btn = document.getElementById("submitButton");
+  console.log("loaded!");
+  btn.addEventListener("submit", (event) => {
+    console.log("Printed!");
+  });
+};
 
 async function loadBooks() {
   let response = await fetch("http://localhost:3000/books");
@@ -20,11 +27,13 @@ async function loadBooks() {
 
                             <div>Author: ${book.author}</div>
                             <div>Publisher: ${book.publisher}</div>
-                            <div>Number of Pages: ${book.pages}</div>
+                            <div>Number of Pages: ${book.numOfPages}</div>
 
                             <hr>
 
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button id="deleteForm" type="button" class="btn btn-danger" data-target="
+                            #deleteBookModal" method="DELETE" onClick="DeleteBook(${book.isbn})">
+                            Delete</button>
                             <button types="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
                                 Edit
@@ -45,6 +54,7 @@ async function setEditModal(isbn) {
 
   console.log(response.status); //200
   console.log(response.statusText); //OK
+  console.log("edit entered");
   if (response.status === 200) {
     let data = await response.text();
     console.log(data);
@@ -66,8 +76,15 @@ async function setEditModal(isbn) {
 }
 
 async function DeleteBook(isbn) {
-    let response = await fetch(`http://localhost:3000/book/${isbn}`);
-    console.log(response.status); //200
-    console.log(response.statusText); //OK
+  let response = await fetch(`http://localhost:3000/book/${isbn}`);
+  console.log("delete");
+  console.log(response.status); //200
+  console.log(response.statusText); //OK
+  if (response.status === 200) {
+    document.getElementById(
+      "deleteForm"
+    ).action = `http://localhost:3000/book/${isbn}`;
+  }
 }
+
 loadBooks();

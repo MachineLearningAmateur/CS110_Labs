@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.post('/book', (req, res) => {
     //we code here
     const book = req.body; //looks at the body of the request
-    console.log(book);
+    //console.log(book);
     books.push(book);
     //res.send('Book has been added to the database');
 });
@@ -26,15 +26,32 @@ app.get('/books', (req, res) => {
     res.json(books);
 });
 
+app.get('/book/:isbn', (req, res) => {
+    const isbn = req.params.isbn
+    for (let i = 0; i < books.length; i++) {
+        let book = books[i]
+        if (book.isbn === isbn) {
+            res.json(book)
+        }
+    }   
+});
+
+app.delete('/book/:isbn', (req, res) => {
+    console.log('delete method used');
+});
+
 app.post('/book/:isbn', (req, res) => {
     //reading isbn from the URL
+    console.log("post works")
     const isbn = req.params.isbn
     const newBook = req.body;
 
     for (let i = 0; i < books.length; i++) {
-        let book = books[i]
+        let book = books[i] 
+        console.log(book);
         if (book.isbn === isbn) {
             books[i] = newBook;
+            console.log(books[i]);
         }
     }
     //res.send('Book has been edited!');
