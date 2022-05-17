@@ -37,12 +37,21 @@ app.get('/book/:isbn', (req, res) => {
 });
 
 app.delete('/book/:isbn', (req, res) => {
-    console.log('delete method used');
+    console.log(`delete ${req.params.isbn}`);
+    const isbn = req.params.isbn; //retrieves the passed in value of isbn
+    for (let i = 0; i < books.length; i++) {
+        let book = books[i]
+        if (book.isbn === isbn) {
+            books.splice(i, 1); //removes char at i of length 1
+            break;
+        }
+    }  
+    window.location.reload();
 });
 
 app.post('/book/:isbn', (req, res) => {
     //reading isbn from the URL
-    console.log("post works")
+    // console.log("post works")
     const isbn = req.params.isbn
     const newBook = req.body;
 
@@ -52,6 +61,7 @@ app.post('/book/:isbn', (req, res) => {
         if (book.isbn === isbn) {
             books[i] = newBook;
             console.log(books[i]);
+            break;
         }
     }
     //res.send('Book has been edited!');

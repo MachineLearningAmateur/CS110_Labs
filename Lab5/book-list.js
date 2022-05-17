@@ -1,10 +1,6 @@
-window.onload = (event) => {
-  btn = document.getElementById("submitButton");
-  console.log("loaded!");
-  btn.addEventListener("submit", (event) => {
-    console.log("Printed!");
-  });
-};
+// window.onload = (event) => {
+
+// };
 
 async function loadBooks() {
   let response = await fetch("http://localhost:3000/books");
@@ -16,7 +12,7 @@ async function loadBooks() {
     let data = await response.text();
     console.log(data);
     const books = JSON.parse(data);
-
+    document.getElementById("books").innerHTML = "";
     for (let book of books) {
       const x = `
                 <div class="col-4">
@@ -31,8 +27,7 @@ async function loadBooks() {
 
                             <hr>
 
-                            <button id="deleteForm" type="button" class="btn btn-danger" data-target="
-                            #deleteBookModal" method="DELETE" onClick="DeleteBook(${book.isbn})">
+                            <button type="button" class="btn btn-danger" onClick="DeleteBook(${book.isbn})">
                             Delete</button>
                             <button types="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
@@ -49,42 +44,38 @@ async function loadBooks() {
   }
 }
 
-async function setEditModal(isbn) {
-  let response = await fetch(`http://localhost:3000/book/${isbn}`);
+    async function setEditModal(isbn) {
+    let response = await fetch(`http://localhost:3000/book/${isbn}`);
 
-  console.log(response.status); //200
-  console.log(response.statusText); //OK
-  console.log("edit entered");
-  if (response.status === 200) {
-    let data = await response.text();
-    console.log(data);
-    const book = JSON.parse(data);
+    console.log(response.status); //200
+    console.log(response.statusText); //OK
+    console.log("edit entered");
+    if (response.status === 200) {
+        let data = await response.text();
+        console.log(data);
+        const book = JSON.parse(data);
 
-    const { title, author, publisher, publish_date, numOfPages } = book;
+        const { title, author, publisher, publish_date, numOfPages } = book;
 
-    document.getElementById("isbn").value = isbn;
-    document.getElementById("title").value = title;
-    document.getElementById("author").value = author;
-    document.getElementById("publisher").value = publisher;
-    document.getElementById("publish_date").value = publish_date;
-    document.getElementById("numOfPages").value = numOfPages;
+        document.getElementById("isbn").value = isbn;
+        document.getElementById("title").value = title;
+        document.getElementById("author").value = author;
+        document.getElementById("publisher").value = publisher;
+        document.getElementById("publish_date").value = publish_date;
+        document.getElementById("numOfPages").value = numOfPages;
 
-    document.getElementById(
-      "editForm"
-    ).action = `http://localhost:3000/book/${isbn}`;
-  }
-}
+        document.getElementById(
+        "editForm"
+        ).action = `http://localhost:3000/book/${isbn}`;
+    }
+    }
 
 async function DeleteBook(isbn) {
-  let response = await fetch(`http://localhost:3000/book/${isbn}`);
+  let response = await fetch(`http://localhost:3000/book/${isbn}`, {method: "DELETE"});
   console.log("delete");
   console.log(response.status); //200
   console.log(response.statusText); //OK
-  if (response.status === 200) {
-    document.getElementById(
-      "deleteForm"
-    ).action = `http://localhost:3000/book/${isbn}`;
-  }
+  location.reload();
 }
 
 loadBooks();
