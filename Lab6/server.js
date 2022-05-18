@@ -45,20 +45,21 @@ mongoose.connect(db, //connect to db
 
 // TODO: Add server side code
 
+
+//getRoom - return json of all rooms in the mongo database 
+app.get("/getRoom", (req, res) => {//order of endpoints matter, keep /getRoom before /:roomName
+    //controllermvc(model vu controller)
+    Room.find().lean().then(item => {
+        res.json(item);
+    });
+})
+
 // Create controller handlers to handle requests at each endpoint
 app.get("/", homeHandler.getHome);
 app.get("/:roomName", roomHandler.getRoom);
 
 // Create endpoint - to create a new room in the database
 
-
-//getRoom - return json of all rooms in the mongo database
-app.get("/getRoom", (req, res) => {
-    //controllermvc(model vu controller)
-    Room.find().lean().then(item => {
-        res.json(item);
-    });
-})
 // NOTE: This is the sample server.js code we provided, feel free to change the structures
 
 app.listen(port, () =>
