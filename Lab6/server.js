@@ -3,9 +3,9 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const hbs = require("express-handlebars");
 const path = require("path");
-const roomIdGenerator=require('./util/roomIdGenerator.js');
-const mongoose = require('mongoose'); //used for mongoDb
-const config = require('config'); //used to access the config file
+const roomIdGenerator = require("./util/roomIdGenerator.js");
+const mongoose = require("mongoose"); //used for mongoDb
+const config = require("config"); //used to access the config file
 const Room = require("./models/rooms");
 
 // import handlers to handle requests to view the homepage
@@ -33,26 +33,41 @@ app.engine(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
-const db = config.get('mongoURI'); //extracts db connection from default.json
+const db = config.get("mongoURI"); //extracts db connection from default.json
 
-mongoose.connect(db, //connect to db
-    error => {
-        if (error) throw error;
-        console.log("Connected to MongoDB."); //log out the connection if connection was made.
-    }
-)
+mongoose.connect(
+  db, //connect to db
+  (error) => {
+    if (error) throw error;
+    console.log("Connected to MongoDB."); //log out the connection if connection was made.
+  }
+);
 // set up stylesheets route
 
 // TODO: Add server side code
 
+//createRoom
+app.post("/create", (req, res) => {
+  const newRoom = new Room({
+    name: req.body.roomName,
+    id: roomIdGenerator.roomIdGenerator(),
+  });
+  newRoom
+    .save()
+    .then(console.log("Room has been added!"))
+    .catch((err) => console.log("Error when creating room."));
+});
 
-//getRoom - return json of all rooms in the mongo database 
-app.get("/getRoom", (req, res) => {//order of endpoints matter, keep /getRoom before /:roomName
-    //controllermvc(model vu controller)
-    Room.find().lean().then(item => {
-        res.json(item);
+//getRoom - return json of all rooms in the mongo database
+app.get("/getRoom", (req, res) => {
+  //order of endpoints matter, keep /getRoom before /:roomName
+  //controllermvc(model vu controller)
+  Room.find()
+    .lean()
+    .then((item) => {
+      res.json(item);
     });
-})
+});
 
 // Create controller handlers to handle requests at each endpoint
 app.get("/", homeHandler.getHome);

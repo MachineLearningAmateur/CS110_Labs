@@ -1,2 +1,38 @@
 <h1> Home </h1>
-<p>This is the {{ title }} page. Welcome {{name}}.</p>
+<p>This is the {{ title }} page.</p>
+
+{{#if isAvailable}}
+<ul id="list-template">
+    {{#each rooms}}
+        <li>{{this.name}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+
+<form action ="/create" method="POST">
+<input type="text" name="roomName" placeholder="Please enter a room name."/>
+<input type="submit" value="create room"/>
+</form>
+
+<script src="https://twiiter.github.io/typeahead.js/js/handlebar.js"></script>
+
+<script>
+    window.addEventListener('load', function() {
+        setInterval(async function() {
+            fetch("http://localhost:8080/getRoom").then(response => response.json()).then(data=>{
+                var roomJson = data;
+                console.log(roomJson);
+                var ul_element = document.getElementById('list-template');
+                ul_element.innerHTML = ""; //resets the innerHtml
+
+                for (var j = 0; j < roomJson.length; j++) {
+                    var li = document.createElement('li');
+                    li.appendChild(roomsJson[j].name);
+                    ul_element.appendChild(li);
+                }
+            }).catch(err => {
+                console.log("Error when rendering rooms", err);
+            });
+        }, 5000);
+    })
+</script>

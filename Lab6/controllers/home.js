@@ -2,9 +2,12 @@
 
 // Example for handle a get request at '/' endpoint.
 
+const Room = require('../models/rooms');
 function getHome(request, response){
   // do any work you need to do, then
-  response.render('home', {title: 'home', name: 'James'}); //render view home and pass in the title: "home"
+  Room.find().lean().then(items => {
+    response.render('home', {title: 'home', rooms: items, isAvailable: true})
+  });
 }
 
 module.exports = {
