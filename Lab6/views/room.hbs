@@ -1,10 +1,26 @@
-<h1> Room </h1>
-<p>This is a demo of chatroom page</p>
+<h1> Room: {{roomName}} </h1>
+{{!-- <p>This is a demo of chatroom page</p>
 <p>
-    The room you are visiting is {{ roomName }}
+    The room you are visiting is {{ roomName }}.
 </p>
-<p>To generate a new room, here is the room id: {{ newRoomId }}</p>
+<p>To generate a new room, here is the room id: {{ newRoomId }}</p> --}}
 
-<script>
-    
-</script>
+<div>
+    <script>
+        const endpoint = "http://localhost:8080/getMessages"
+
+        function textInput() {
+            console.log('text input works!');
+            var validInput = false;
+            var input = document.getElementById("userNameInput");
+        }
+    </script>
+</div>
+
+<form action="/comment" method="POST">
+        <input id='roomInfo' type="hidden" name="rName" value="{{roomName}}"/>
+        <input id="userNameInput" type="text" name="userName" placeholder="Enter username">
+        <input type="text" name="message" placeholder="Enter your message">
+        <input type="submit" value="Send" onclick=""> 
+        {{!-- <script type="text/javascript" src="/js/messages.js"></script> --}}
+</form>

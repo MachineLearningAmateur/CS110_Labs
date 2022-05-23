@@ -7,10 +7,12 @@ const roomIdGenerator = require("./util/roomIdGenerator.js");
 const mongoose = require("mongoose"); //used for mongoDb
 const config = require("config"); //used to access the config file
 const Room = require("./models/rooms");
+const roomMessages = require("./models/roomMessages");
 
 // import handlers to handle requests to view the homepage
 const homeHandler = require("./controllers/home.js");
 const roomHandler = require("./controllers/room.js");
+const res = require("express/lib/response");
 
 const app = express();
 const port = 8080;
@@ -58,6 +60,10 @@ app.post("/create", (req, res) => {
     .catch((err) => console.log("Error when creating room."));
 });
 
+app.post("/message", (req, res) => {
+  console.log("post message!");
+})
+
 //getRoom - return json of all rooms in the mongo database
 app.get("/getRoom", (req, res) => {
   //order of endpoints matter, keep /getRoom before /:roomName
@@ -67,6 +73,12 @@ app.get("/getRoom", (req, res) => {
     .then((item) => {
       res.json(item);
     });
+});
+
+app.get("/getMessages", (req, res) => {
+  roomMessages.find().lean().then(items => {
+    res.json(items);
+  });
 });
 
 // Create controller handlers to handle requests at each endpoint
