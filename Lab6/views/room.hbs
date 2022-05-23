@@ -69,11 +69,12 @@
                     var fourthDiv = document.createElement('div');
                     fourthDiv.id = "message";
                     fourthDiv.innerHTML = messages[j].content;
-                    var fifthDiv = document.createElement('br');
-                    container.appendChild(firstDiv);
-                    container.appendChild(header);
-                    container.appendChild(fourthDiv);
-                    container.appendChild(fifthDiv);
+                    var messageDiv = document.createElement('div');
+                    messageDiv.id = "individualMessage";
+                    messageDiv.appendChild(firstDiv);
+                    messageDiv.appendChild(header);
+                    messageDiv.appendChild(fourthDiv);
+                    container.appendChild(messageDiv);
                 }
             });
         }, 3000);
