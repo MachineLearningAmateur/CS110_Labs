@@ -1,3 +1,4 @@
+<h1><a href="/">Home</a></h1>
 <h1> Room: {{roomName}} </h1>
 {{!-- <p>This is a demo of chatroom page</p>
 <p>
@@ -6,21 +7,49 @@
 <p>To generate a new room, here is the room id: {{ newRoomId }}</p> --}}
 
 <div>
-    <script>
-        const endpoint = "http://localhost:8080/getMessages"
-
-        function textInput() {
-            console.log('text input works!');
-            var validInput = false;
-            var input = document.getElementById("userNameInput");
+    <script type="text/javascript">
+        let userName = null;
+        window.addEventListener('load', function () {
+            while (userName === null || userName === "") {
+                userName = prompt('Please enter a username.');
+            }
+        });
+        
+        const submitFunc = () => {
+            const data = {
+                roomName: document.getElementById('roomName').value,
+                userName: userName,
+                content: document.getElementById('content').value
+            }
+            const response = fetch("http://localhost:8080/message", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            })
+            return userName;
         }
+
+        var messages = [];
+        const load = window.setInterval(async () => {
+            fetch("http://localhost:8080/getMessages").
+            then(res => res.json()).then(data=> {
+                var roomName = document.getElementById('roomName');
+                var container = document.getElementById('messageContainer');
+            });
+        }, 5000);
     </script>
 </div>
 
-<form action="/comment" method="POST">
-        <input id='roomInfo' type="hidden" name="rName" value="{{roomName}}"/>
-        <input id="userNameInput" type="text" name="userName" placeholder="Enter username">
-        <input type="text" name="message" placeholder="Enter your message">
-        <input type="submit" value="Send" onclick=""> 
-        {{!-- <script type="text/javascript" src="/js/messages.js"></script> --}}
+<form>
+        <input id='roomName' type="hidden" name="roomName" value="{{roomName}}"/>
+        {{!-- <input id="userNameInput" type="text" name="userName" placeholder="Enter username"> --}}
+        <input id="content" type="text" name="content" placeholder="Enter your message" required>
+        <input type="submit" value="Post" onclick="submitFunc()"> 
 </form>
+
+{{!-- {{#if isAvailable}}
+<div id="chatBox">
+    <div id="messageContainer">
+        {{#each messages}}
+    </div>
+</div> --}}

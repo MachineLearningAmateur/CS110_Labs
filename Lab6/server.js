@@ -61,8 +61,17 @@ app.post("/create", (req, res) => {
 });
 
 app.post("/message", (req, res) => {
-  console.log("post message!");
-})
+  console.log(req.body.content);
+  const newMessage = new roomMessages({
+    room: req.body.roomName,
+    username: req.body.userName,
+    dateEntry: Date.now(),
+    content: req.body.content
+  });
+  newMessage.save().then(console.log('Message added to db'))
+  .catch(err => console.log("Error: ", err));
+  res.send("message sent!")
+});
 
 //getRoom - return json of all rooms in the mongo database
 app.get("/getRoom", (req, res) => {
@@ -84,6 +93,7 @@ app.get("/getMessages", (req, res) => {
 // Create controller handlers to handle requests at each endpoint
 app.get("/", homeHandler.getHome);
 app.get("/:roomName", roomHandler.getRoom);
+app.get('/:roomName/messages', roomHandler.getRoom);            
 
 // Create endpoint - to create a new room in the database
 
