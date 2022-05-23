@@ -13,9 +13,10 @@
             while (userName === null || userName === "") {
                 userName = prompt('Please enter a username.');
             }
+        document.getElementById('post').addEventListener('click', () => {submit()});
         });
         
-        const submitFunc = () => {
+        const submit = () => {
             const data = {
                 roomName: document.getElementById('roomName').value,
                 userName: userName,
@@ -25,9 +26,9 @@
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
-            })
+            });
             return userName;
-        }
+        };
 
         var messages = [];
         const load = window.setInterval(async () => {
@@ -44,7 +45,7 @@
         <input id='roomName' type="hidden" name="roomName" value="{{roomName}}"/>
         {{!-- <input id="userNameInput" type="text" name="userName" placeholder="Enter username"> --}}
         <input id="content" type="text" name="content" placeholder="Enter your message" required>
-        <input type="submit" value="Post" onclick="submitFunc()"> 
+        <input id="post" type="submit" value="Post"> 
 </form>
 
 {{!-- {{#if isAvailable}}
