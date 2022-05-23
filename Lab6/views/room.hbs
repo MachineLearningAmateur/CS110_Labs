@@ -1,6 +1,9 @@
-<link rel="stylesheet" href="../css/room.css">
+<link rel="stylesheet" href="/css/room.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<h1><a href="/">Home</a></h1>
+<nav class="navbar navbar-expand-lg bg-dark text-white">
+    <h1><a class="link-light" href="/">Home</a></h1>
+</nav>
 <h1 class="title"> Room: {{roomName}} </h1>
 {{!-- <p>This is a demo of chatroom page</p>
 <p>
@@ -19,6 +22,9 @@
         });
         
         const submit = () => {
+            if(document.getElementById('content').value.trim() === "") {
+                return;
+            }
             const data = {
                 roomName: document.getElementById('roomName').value,
                 userName: userName,
@@ -28,8 +34,7 @@
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
-            });
-            return userName;
+            }).then(document.getElementById('content').value = "");
         };
 
         const load = window.setInterval(async () => {
@@ -86,7 +91,7 @@
         {{!-- <input id="userNameInput" type="text" name="userName" placeholder="Enter username"> --}}
         <textarea id="content" type="text" name="content" placeholder="Enter your message" required></textarea>
         
-        <input id="post" type="submit" value="Post"> 
+        <input class="btn btn-dark" id="post" type="submit" value="Post"> 
 </form>
 
 {{#if isAvailable}}

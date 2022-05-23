@@ -1,0 +1,22 @@
+.link-light {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.homeContent {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    float: none;
+    text-align: center;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+#myForm {
+    width:100%;
+}

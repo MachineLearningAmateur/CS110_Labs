@@ -1,49 +1,54 @@
-<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="/css/home.css" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+/>
 
-<h1> Home </h1>
-<p>This is the {{ title }} page.</p>
-<p>Below are the rooms that are currently available. If none of them interest you, make your own!</p>
+<nav class="navbar navbar-expand-lg bg-dark link-light">
+  <h1><a class="link-light" href="/">Home</a></h1>
+</nav>
+<div class="homeContent">
 
-{{#if isAvailable}}
-<ul id="list-template">
-    {{#each rooms}}
-         <li> <a href={{this.name}}> {{this.name}}  </a></li>
-    {{/each}}
-</ul>
-{{/if}}
+  <p>This is the {{title}} page.</p>
+  <p>Below are the rooms that are currently available. If none of them interest
+    you, make your own!</p>
 
-<form action="/create" method="POST">
-<input type="text" name="roomName" placeholder="enter room name"/>
-<input type="submit" value="create room"/> 
-</form>
+  {{#if isAvailable}}
+    <ul id="list-template">
+      {{#each rooms}}
+        <li> <a href={{this.name}}> {{this.name}} </a></li>
+      {{/each}}
+    </ul>
+  {{/if}}
+
+  <form class="form form-group" action="/create" method="POST">
+    <div class="input-group mx-auto w-25 input-group-lg">
+      <input type="text" name="roomName" placeholder="Enter a room name" />
+      <div class="input-group-append">
+        <input class="btn btn-dark" type="submit" value="create room" />
+      </div>
+    </div>
+  </form>
+</div>
 
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
 <script>
-    window.addEventListener('load', function () {
-        setInterval(async function(){
-            fetch('http://localhost:8080/getRoom')
-                .then(response => response.json())
-                .then(data => {
-                    var roomsJson = data;
-                    console.log(roomsJson);
-                    var html = "";
-                    var ul_element = document.getElementById('list-template');
-                    
-                    document.getElementById('list-template').innerHTML=" "
-
-                    for(var j = 0; j < roomsJson.length; ++j) {
-                        var li = document.createElement('li');
-                        var a = document.createElement('a');
-                        a.setAttribute('href', roomsJson[j].name)
-                        li.appendChild(a);
-                        document.getElementById('list-template').appendChild(li)
-                        a.innerHTML = a.innerHTML + roomsJson[j].name
-                    }
-
-                })
-                .catch(err => {
-                    console.log("ERROR" + err)
-                });
-        }, 5000);
-    });
+  window.addEventListener('load', function () { setInterval(async function(){
+  fetch('http://localhost:8080/getRoom') 
+  .then(response => response.json())
+  .then(data => { var roomsJson = data;
+  console.log(roomsJson); 
+  var html = "";
+  var ul_element = document.getElementById('list-template');
+  document.getElementById('list-template').innerHTML=" " 
+  for(var j = 0; j < roomsJson.length; ++j) { 
+    var li = document.createElement('li'); 
+    var a = document.createElement('a'); 
+    a.setAttribute('href', roomsJson[j].name);
+    li.appendChild(a); 
+    document.getElementById('list-template').appendChild(li);
+    a.innerHTML = a.innerHTML + roomsJson[j].name;
+  } }).catch(err => {
+    console.log("ERROR" + err) }); }, 5000);
+   });
 </script>

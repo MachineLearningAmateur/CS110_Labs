@@ -30,3 +30,8 @@
 #individualMessage {
     margin: 5px;
 }
+
+.link-light {
+    text-decoration: none !important;
+    color: white !important;
+}
