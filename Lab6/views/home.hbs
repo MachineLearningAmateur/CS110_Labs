@@ -21,11 +21,11 @@
     </ul>
   {{/if}}
 
-  <form class="form form-group" action="/create" method="POST">
-    <div class="input-group mx-auto w-25 input-group-lg">
-      <input type="text" name="roomName" placeholder="Enter a room name" />
+  <form class="form form-group" onsubmit="return false">
+    <div class="input-group mx-auto w-25">
+      <input id="roomName" type="text" name="roomName" placeholder="Enter a room name" />
       <div class="input-group-append">
-        <input class="btn btn-dark" type="submit" value="create room" />
+        <input id="create" class="btn btn-dark" type="submit" value="create room"/>
       </div>
     </div>
   </form>
@@ -37,8 +37,8 @@
   setInterval(async function(){
     fetch('http://localhost:8080/getRoom') 
     .then(response => response.json())
-    .then(data => { var roomsJson = data;
-      console.log(roomsJson); 
+    .then(data => { 
+      var roomsJson = data;
       var html = "";
       var ul_element = document.getElementById('list-template');
       document.getElementById('list-template').innerHTML=" " 
@@ -52,6 +52,36 @@
       } 
     }).catch(err => {
       console.log("ERROR" + err) }); 
-  }, 3000);
-   });
+    }, 3000);
+    document.getElementById('create').addEventListener('click', () => {create()});
+  }
+  );
+
+  const create = async () => {
+    console.log("create");
+    var match = false;
+    const name = document.getElementById('roomName').value;
+    const check = await fetch('http://localhost:8080/getRoom').then(response => response.json())
+    .then(data => {
+      for (let i = 0; i < data.length; i++) {
+        if (name === data[i].name) {
+          match = true;
+        }
+      }
+    });
+    if (match) {
+      document.getElementById('roomName').value = ""
+      document.getElementById('roomName').placeholder = "Enter a different name."
+      return;
+    }
+
+    const data = {
+      roomName: name
+    };
+    const response = fetch("http://localhost:8080/create", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            }).then(document.getElementById('roomName').value = "");
+  }
 </script>
