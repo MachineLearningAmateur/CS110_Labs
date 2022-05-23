@@ -1,0 +1,28 @@
+#headerMessage {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#messageContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#username {
+    font-weight: 800;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.inputForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+}

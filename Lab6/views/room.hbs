@@ -1,5 +1,7 @@
+<link rel="stylesheet" href="../css/room.css">
+
 <h1><a href="/">Home</a></h1>
-<h1> Room: {{roomName}} </h1>
+<h1 class="title"> Room: {{roomName}} </h1>
 {{!-- <p>This is a demo of chatroom page</p>
 <p>
     The room you are visiting is {{ roomName }}.
@@ -30,27 +32,73 @@
             return userName;
         };
 
-        var messages = [];
         const load = window.setInterval(async () => {
             fetch("http://localhost:8080/getMessages").
             then(res => res.json()).then(data=> {
                 var roomName = document.getElementById('roomName');
                 var container = document.getElementById('messageContainer');
+                container.innerHTML = "";
+                var messages = [];
+                //var containerChildren = container.children;
+                
+                //for (var i = 0; i < containerChildren.length; i++) {
+                
+                //}
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].room === roomName.value) {
+                        messages.push(data[i]);
+                    }
+                    //console.log(messages);
+                }
+                for (var j = 0; j < messages.length; j++) {
+                    var header = document.createElement('div');
+                    header.id = "headerMessage";
+                    var firstDiv = document.createElement('div');
+                    firstDiv.id = messages[j]._id;
+                    var secondDiv = document.createElement('div');
+                    secondDiv.id = "username";
+                    secondDiv.innerHTML = messages[j].username;
+                    var thirdDiv = document.createElement('div');
+                    thirdDiv.id = "date";
+                    var d = new Date(messages[j].dateEntry);
+                    thirdDiv.innerHTML = d.toLocaleDateString() + " " + d.toLocaleTimeString();
+
+                    header.appendChild(secondDiv);
+                    header.appendChild(thirdDiv);
+
+                    var fourthDiv = document.createElement('div');
+                    fourthDiv.id = "message";
+                    fourthDiv.innerHTML = messages[j].content;
+                    var fifthDiv = document.createElement('br');
+                    container.appendChild(firstDiv);
+                    container.appendChild(header);
+                    container.appendChild(fourthDiv);
+                    container.appendChild(fifthDiv);
+                }
             });
-        }, 5000);
+        }, 3000);
     </script>
 </div>
 
-<form>
+<form class="inputForm" onsubmit="return false">
         <input id='roomName' type="hidden" name="roomName" value="{{roomName}}"/>
         {{!-- <input id="userNameInput" type="text" name="userName" placeholder="Enter username"> --}}
-        <input id="content" type="text" name="content" placeholder="Enter your message" required>
+        <textarea id="content" type="text" name="content" placeholder="Enter your message" required></textarea>
+        
         <input id="post" type="submit" value="Post"> 
 </form>
 
-{{!-- {{#if isAvailable}}
+{{#if isAvailable}}
 <div id="chatBox">
     <div id="messageContainer">
-        {{#each messages}}
+        {{!-- {{#each messages}}
+                <br>
+                <div id="{{this._id}}"></div>
+                <div id="nickname">{{this.username}}</div>
+                <div id="date">{{this.dateEntry}}</div>
+                <div id="message">{{this.content}}</div>
+                <br>
+        {{/each}} --}}
     </div>
-</div> --}}
+</div>
+{{/if}}
