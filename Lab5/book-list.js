@@ -1,6 +1,3 @@
-// window.onload = (event) => {
-
-// };
 
 async function loadBooks() {
   let response = await fetch("http://localhost:3000/books");
@@ -27,55 +24,58 @@ async function loadBooks() {
 
                             <hr>
 
-                            <button type="button" class="btn btn-danger" onClick="DeleteBook(${book.isbn})">
+                            <button type="button" class="btn btn-danger" onClick="DeleteBook('${book.isbn}')"> 
                             Delete</button>
                             <button types="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
+                                data-target="#editBookModal" onClick="setEditModal('${book.isbn}')">
                                 Edit
                             </button>
                         </div>
                     </div>
                 </div>
-    
             `;
+            //when inputting a value from a variable, make sure to add ' ' around the value.
       document.getElementById("books").innerHTML =
         document.getElementById("books").innerHTML + x;
     }
   }
 }
 
-    async function setEditModal(isbn) {
-    let response = await fetch(`http://localhost:3000/book/${isbn}`);
+async function setEditModal(isbn) {
+  let response = await fetch(`http://localhost:3000/book/${isbn}`);
 
-    console.log(response.status); //200
-    console.log(response.statusText); //OK
-    console.log("edit entered");
-    if (response.status === 200) {
-        let data = await response.text();
-        console.log(data);
-        const book = JSON.parse(data);
+  console.log(response.status); //200
+  console.log(response.statusText); //OK
+  console.log("edit entered");
+  if (response.status === 200) {
+    let data = await response.text();
+    console.log(data);
+    const book = JSON.parse(data);
 
-        const { title, author, publisher, publish_date, numOfPages } = book;
+    const { title, author, publisher, publish_date, numOfPages } = book;
 
-        document.getElementById("isbn").value = isbn;
-        document.getElementById("title").value = title;
-        document.getElementById("author").value = author;
-        document.getElementById("publisher").value = publisher;
-        document.getElementById("publish_date").value = publish_date;
-        document.getElementById("numOfPages").value = numOfPages;
+    document.getElementById("isbn").value = isbn;
+    document.getElementById("title").value = title;
+    document.getElementById("author").value = author;
+    document.getElementById("publisher").value = publisher;
+    document.getElementById("publish_date").value = publish_date;
+    document.getElementById("numOfPages").value = numOfPages;
 
-        document.getElementById(
-        "editForm"
-        ).action = `http://localhost:3000/book/${isbn}`;
-    }
-    }
+    document.getElementById(
+      "editForm"
+    ).action = `http://localhost:3000/book/${isbn}`;
+  }
+}
 
 async function DeleteBook(isbn) {
-  let response = await fetch(`http://localhost:3000/book/${isbn}`, {method: "DELETE"});
+  console.log('lol');
+  let response = await fetch(`http://localhost:3000/book/${isbn}`, {
+    method: "DELETE",
+  });
   console.log("delete");
   console.log(response.status); //200
   console.log(response.statusText); //OK
-  location.reload();
+  loadBooks();
 }
 
 loadBooks();

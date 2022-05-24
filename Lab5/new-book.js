@@ -15,7 +15,6 @@ function resetForm(event) {
     publisher: `${document.getElementById("5").value}`,
     numOfPages: `${document.getElementById("6").value}`,
   };
-  console.log(data);
   const response = fetch("http://localhost:3000/book", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

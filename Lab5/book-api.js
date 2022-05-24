@@ -37,7 +37,7 @@ app.get('/book/:isbn', (req, res) => {
 });
 
 app.delete('/book/:isbn', (req, res) => {
-    console.log(`delete ${req.params.isbn}`);
+    //console.log(`delete ${req.params.isbn}`);
     const isbn = req.params.isbn; //retrieves the passed in value of isbn
     for (let i = 0; i < books.length; i++) {
         let book = books[i]
@@ -46,7 +46,7 @@ app.delete('/book/:isbn', (req, res) => {
             break;
         }
     }  
-    window.location.reload();
+    res.send('done');
 });
 
 app.post('/book/:isbn', (req, res) => {
@@ -64,7 +64,7 @@ app.post('/book/:isbn', (req, res) => {
             break;
         }
     }
-    //res.send('Book has been edited!');
+    res.send('Book has been edited!');
 });
 
 app.listen(port, ()=> console.log('Hello world app listening on port'));
