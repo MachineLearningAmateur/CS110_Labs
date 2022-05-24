@@ -21,16 +21,14 @@
       {{/each}}
     </ul>
   {{/if}}
-  <div class="inputForm">
-  <form class="form form-group" onsubmit="return false">
-    <div class="input-group mx-auto w-25">
-      <input id="roomName" type="text" name="roomName" placeholder="Enter a room name" />
+  <form class="form form-group formCss" onsubmit="return false">
+    <div class="input-group mb-3">
+      <input class="form-control" id="roomName" type="text" name="roomName" placeholder="Enter a room name" />
       <div class="input-group-append">
         <input id="create" class="btn btn-dark" type="submit" value="Create Room"/>
       </div>
     </div>
   </form>
-  </div>
 </div>
 
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
@@ -66,14 +64,14 @@
     const check = await fetch('http://localhost:8080/getRoom').then(response => response.json())
     .then(data => {
       for (let i = 0; i < data.length; i++) {
-        if (name === data[i].name) {
+        if (name.trim() === data[i].name) {
           match = true;
         }
       }
     });
     if (match) {
       document.getElementById('roomName').value = ""
-      document.getElementById('roomName').placeholder = "Enter a different name."
+      document.getElementById('roomName').placeholder = "Please enter a unique name for room."
       return;
     }
 

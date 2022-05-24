@@ -23,12 +23,6 @@ ul {
     width:100%;
 }
 
-#create {
-    margin-top: 10px;
-    margin-left: 49%;
-    border-radius: 15px;
-}
-
 #roomName {
     height:40px;
 }
@@ -43,7 +37,6 @@ li {
     margin: 15px 0;
 }
 
-.inputForm {
-    width: 10em;
-    margin-left: -12em;
+.formCss {
+    width: 60%;
 }
