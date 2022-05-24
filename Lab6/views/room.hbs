@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg bg-dark text-white">
     <h1><a class="link-light" href="/">Home</a></h1>
 </nav>
-<h1 class="title"> Room: {{roomName}} </h1>
+<h1 class="title"> {{roomName}} </h1>
 {{!-- <p>This is a demo of chatroom page</p>
 <p>
     The room you are visiting is {{ roomName }}.
@@ -63,10 +63,10 @@
                     var secondDiv = document.createElement('div');
                     secondDiv.id = "username";
                     secondDiv.innerHTML = messages[j].username;
-                    var thirdDiv = document.createElement('div');
+                    var thirdDiv = document.createElement('div'); 
                     thirdDiv.id = "date";
                     var d = new Date(messages[j].dateEntry);
-                    thirdDiv.innerHTML = d.toLocaleDateString() + " " + d.toLocaleTimeString();
+                    thirdDiv.innerHTML = d.toLocaleDateString() + "<br/>" + d.toLocaleTimeString();
 
                     header.appendChild(secondDiv);
                     header.appendChild(thirdDiv);
@@ -86,14 +86,6 @@
     </script>
 </div>
 
-<form class="inputForm" onsubmit="return false">
-        <input id='roomName' type="hidden" name="roomName" value="{{roomName}}"/>
-        {{!-- <input id="userNameInput" type="text" name="userName" placeholder="Enter username"> --}}
-        <textarea id="content" type="text" name="content" placeholder="Enter your message" required></textarea>
-        
-        <input class="btn btn-dark" id="post" type="submit" value="Post"> 
-</form>
-
 {{#if isAvailable}}
 <div id="chatBox">
     <div id="messageContainer">
@@ -108,3 +100,13 @@
     </div>
 </div>
 {{/if}}
+
+<div class = "chatInput"> 
+    <form class="inputForm" onsubmit="return false">
+            <input id='roomName' type="hidden" name="roomName" value="{{roomName}}"/>
+            {{!-- <input id="userNameInput" type="text" name="userName" placeholder="Enter username"> --}}
+            <textarea id="content" type="text" name="content" placeholder="Enter your message" required></textarea>
+            
+            <input class="btn btn-dark" id="post" type="submit" value="Post"> 
+    </form>
+</div>

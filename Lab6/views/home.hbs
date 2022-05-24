@@ -5,14 +5,15 @@
 />
 
 <nav class="navbar navbar-expand-lg bg-dark link-light">
+
   <h1><a class="link-light" href="/">Home</a></h1>
 </nav>
+
 <div class="homeContent">
-
-  <p>This is the {{title}} page.</p>
-  <p>Below are the rooms that are currently available. If none of them interest
+<div class ="homeMessage">
+  <p>This is the {{title}} page. Below are the rooms that are currently available. If none of them interest
     you, make your own!</p>
-
+</div>
   {{#if isAvailable}}
     <ul id="list-template">
       {{#each rooms}}
@@ -20,15 +21,16 @@
       {{/each}}
     </ul>
   {{/if}}
-
+  <div class="inputForm">
   <form class="form form-group" onsubmit="return false">
     <div class="input-group mx-auto w-25">
       <input id="roomName" type="text" name="roomName" placeholder="Enter a room name" />
       <div class="input-group-append">
-        <input id="create" class="btn btn-dark" type="submit" value="create room"/>
+        <input id="create" class="btn btn-dark" type="submit" value="Create Room"/>
       </div>
     </div>
   </form>
+  </div>
 </div>
 
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
